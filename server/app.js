@@ -9,7 +9,7 @@ const cors = require('cors');
 const passport = require('passport');
 const { Strategy, ExtractJwt } = require("passport-jwt");
 
-const config = require("./configs/index");
+const config = require("./configs");
 var User = require('./models/user');
 var authRoutes = require('./routes/auth');
 var usersRoutes = require('./routes/users');
