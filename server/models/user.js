@@ -8,7 +8,13 @@ const userSchema = new Schema({
   // salt: String, // Defined with passportLocalMongoose
   name: {type:String, required: [true, "A name is required"]},
   pictureUrl: String,
+  bio: String,
+  role: String,
   _groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
+  isPublic: {
+    type: Boolean,
+    default: false
+  },
   isAdmin: {
     type: Boolean,
     default: false

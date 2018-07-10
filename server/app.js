@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -13,6 +12,8 @@ const config = require("./configs");
 var User = require('./models/user');
 var authRoutes = require('./routes/auth');
 var usersRoutes = require('./routes/users');
+var postsRoutes = require('./routes/posts');
+var groupsRoutes = require('./routes/groups');
 
 require('./configs/database');
 require('./configs/cloudinary');
@@ -62,7 +63,8 @@ passport.use(strategy);
 // List all your API routes
 app.use('/api', authRoutes);
 app.use('/api/users', usersRoutes);
-
+app.use('/api/posts', postsRoutes);
+app.use('/api/groups', groupsRoutes);  //Added the route for posts
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
 app.use('/api/*', (req, res, next) => {

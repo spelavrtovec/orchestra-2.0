@@ -8,9 +8,9 @@ const config = require("../configs/index");
 var router = express.Router();
 
 // Route to get all posts in a certain group
-router.get("/:group", (req, res, next) => {
+router.get("/:group", (req, res, next) => { //get the component of the specific group
   Post.find()
-    .populate("_user")
+    .populate("posts")
     .then(posts => {
       res.json(posts);
     })
@@ -19,12 +19,16 @@ router.get("/:group", (req, res, next) => {
 
 //to create a new post in a group
 router.post(
-  "/",
+  "/:group", //post to a specific group component???!!!??
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
     let { text } = req.body;
     let _user = req.user._id;
-    Post.create({ text, _user })
+    let date = new Date();
+
+    const data = {text, _user, date};
+    
+    Post.create(data)
       .then(post => {
         res.json({
           success: true,
