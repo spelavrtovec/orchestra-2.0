@@ -7,27 +7,17 @@ const config = require("../configs/index");
 
 var router = express.Router();
 
-// Route to get all posts in a certain group
-router.get("/:group", (req, res, next) => { //get the component of the specific group
-  Post.find()
-    .populate("posts")
-    .then(posts => {
-      res.json(posts);
-    })
-    .catch(error => next(error));
-});
-
 //to create a new post in a group
 router.post(
-  "/:group", //post to a specific group component???!!!??
+  "/:groupId/post",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
+    let groupId = req.params.groupId;
     let { text } = req.body;
     let _user = req.user._id;
-    let date = new Date();
 
-    const data = {text, _user, date};
-    
+    const data = { text, _user };
+
     Post.create(data)
       .then(post => {
         res.json({
@@ -36,8 +26,14 @@ router.post(
         });
       })
       .catch(error => next(error));
-  }
-);
+
+    Group
+    .findByIdAndUpdate(groupId, { $push: { posts:  Post } })
+    .then(() =>{
+    Group.save().then((group) => {
+        console.log(group)
+    })
+});
 
 //to delete a post:
 router.delete(

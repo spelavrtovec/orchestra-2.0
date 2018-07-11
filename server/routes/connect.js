@@ -20,8 +20,18 @@ router.post("/newgroup", passport.authenticate("jwt", config.jwtSession), (req, 
         });
       })
       .catch(error => next(error))
-  
   }
 );
+
+// Route to display all the happenings in a certain group
+router.get("/:groupId", passport.authenticate("jwt", config.jwtSession), (req, res, next) => { //get the component of the specific group
+  let groupId = req.params. //something
+  Group
+  .findById(groupId)
+  .populate('_members')
+  .populate('posts')
+
+  .exec()
+});
 
 module.exports = router;

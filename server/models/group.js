@@ -7,7 +7,7 @@ const groupSchema = new Schema({
   name: String,
   place: String,
   info: String,
-  _posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
  });
 
 const Group = mongoose.model('Group', groupSchema);
