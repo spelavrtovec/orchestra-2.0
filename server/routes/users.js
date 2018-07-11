@@ -17,12 +17,41 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage });
 
 
-// Route to get all users
+// Route to get all members
 router.get('/', (req, res, next) => {
-  User.find()
+  User.find('role: MEMBER')
     .then(users => {
       res.json(users)
     })
+});
+
+//creating his/her profile when he/she signs up
+router.post(
+  "/user",
+  passport.authenticate("jwt", config.jwtSession),
+  (req, res, next) => {
+    let { name, pictureUrl, bio, myRole } = req.body;
+    const data = { name, pictureUrl, bio, myRole }
+
+    User.create(data)
+      .then(user => {
+        res.json({
+          success: true,
+          user
+        });
+      })
+      .catch(error => next(error))
+});
+
+//getting the profile of the current user
+router.get(
+  "/profile",
+  passport.authenticate("jwt", config.jwtSession),
+  (req, res, next) => {
+  let profile = req.user._id;
+  Profile
+    .findById(profile) 
+    
 });
 
 // Route to add a picture on one user with Cloudinary

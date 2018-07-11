@@ -18,21 +18,25 @@ router.post(
 
     const data = { text, _user };
 
-    Post.create(data)
-      .then(post => {
+    Post
+    .create(data)
+    .then(post => {
         res.json({
           success: true,
           post
         });
       })
-      .catch(error => next(error));
+    .catch(error => next(error));
 
     Group
-    .findByIdAndUpdate(groupId, { $push: { posts:  Post } })
+    .findByIdAndUpdate(groupId, { $push: { posts:  post } })
     .then(() =>{
-    Group.save().then((group) => {
-        console.log(group)
-    })
+      Group
+      .save()
+      .then((group) => {
+          console.log(group)
+      })
+  })
 });
 
 //to delete a post:
@@ -40,7 +44,8 @@ router.delete(
   "/:id",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
-    Post.findByIdAndRemove(req.params.id)
+    Post
+    .findByIdAndRemove(req.params.id)
       .then(post => {
         res.json({
           success: true,
@@ -50,5 +55,19 @@ router.delete(
       .catch(error => next(error));
   }
 );
+
+
+//to post a file in a group
+router.post(':groupId/file', parser.single('file'), (req, res, next) => {
+  console.log('DEBUG req.file', req.file);
+  Group
+  .findOneAndUpdate(groupId, { fileUrl: req.file.url })
+    .then(() => {
+      res.json({
+        success: true,
+        fileUrl: req.file.url
+      })
+    })
+});
 
 module.exports = router;

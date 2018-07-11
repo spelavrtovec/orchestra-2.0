@@ -9,7 +9,7 @@ const userSchema = new Schema({
   name: {type:String, required: [true, "A name is required"]},
   pictureUrl: String,
   bio: String,
-  role: String,
+  myRole: String,
   _groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   isPublic: {
     type: Boolean,

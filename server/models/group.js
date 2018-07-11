@@ -7,6 +7,7 @@ const groupSchema = new Schema({
   name: String,
   place: String,
   info: String,
+  files: Array,
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
  });
 
