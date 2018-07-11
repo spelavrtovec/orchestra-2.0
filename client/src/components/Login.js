@@ -22,7 +22,7 @@ class Login extends Component {
     api.login(this.state.email, this.state.password)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/connect") // Redirect to the connect page
       })
       .catch(err => {
         console.log('ERROR')

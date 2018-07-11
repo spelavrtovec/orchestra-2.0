@@ -12,23 +12,65 @@ const errHandler = err => {
 export default {
   service: service,
   
-  // getCountries() {
-  //   return service
-  //     .get('/countries')
-  //     .then(res => res.data)
-  //     .catch(errHandler);
-  // },
-
-  // postCountries(data) {
-  //   return service
-  //     .post('/countries', data)
-  //     .then(res => res.data)
-  //     .catch(errHandler);
-  // },
-  
-  getSecret() {
+  getPosts() {
     return service
-      .get('/secret')
+      .get('/countries')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  postPosts(data) {
+    return service
+      .post('/countries', data)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  agenda() {
+    return service
+      .get('/agenda')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  contacts() {
+    return service
+      .get('/contacts')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  projects() {
+    return service
+      .get('/projects')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  gallery() {
+    return service
+      .get('/gallery')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  association() {
+    return service
+      .get('/association')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  connect() {
+    return service
+      .get('/connect')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  profile() {
+    return service
+      .get('/profile')
       .then(res => res.data)
       .catch(errHandler);
   },

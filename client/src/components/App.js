@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Navigation from './Navigation';
 import Home from './Home';
-import Secret from './Secret';
 import Login from './Login';
 import Signup from './Signup';
-import api from '../api';
+import Agenda from './Agenda';
+import Contacts from './Contacts';
+import Projects from './Projects';
+import Gallery from './Gallery';
+import Association from './Association';
+import Connect from './Connect';
+import Profile from './Profile';
 import './App.css';
+
 
 class App extends Component {
   // constructor(props) {
@@ -13,27 +20,23 @@ class App extends Component {
   //   api.loadUser();
   // }
 
-  handleLogoutClick(e) {
-    api.logout()
-  }
-
   render() {                
     return (
-      <div className="App">
-        <header className="App-header">
-          <Link to="/">Home</Link> 
-          {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
-          {!api.isLoggedIn() && <Link to="/login">Login</Link> }
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
-          <Link to="/secret">Secret</Link> 
-        </header>
+      <div>
+        <Navigation />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
-          <Route path="/secret" component={Secret} />
+          <Route path="/association" component={Association} />
+          <Route path="/agenda" component={Agenda} />
+          <Route path="/contacts" component={Contacts} />
+          <Route path="/projects" component={Projects} />
+          <Route path="/gallery" component={Gallery} />
+          <Route path="/connect" component={Connect} />
+          <Route path="/profile" component={Profile} />
           <Route render={() => <h2>404</h2>} />
-        </Switch>        
+        </Switch> 
       </div>
     );
   }

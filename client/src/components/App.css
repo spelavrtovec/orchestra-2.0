@@ -1,21 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,600');
+
 .App {
   text-align: center;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 20px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: white;
   padding: 20px;
-  color: white;
+  color: black;
 }
 
 .App-header a {
-  color: white;
+  color: black;
   padding: 0 5px;
 }
 
@@ -30,4 +31,18 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+#top-header {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 8vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: lightblue;
 }

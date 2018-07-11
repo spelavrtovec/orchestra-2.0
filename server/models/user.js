@@ -15,14 +15,15 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
-  isAdmin: {
-    type: Boolean,
-    default: false
-  },
-  isMember: {
-    type: Boolean,
-    default: true
-  },
+  role: {type: String, enum:["ADMIN", "MEMBER"], default: "MEMBER"},
+  // isAdmin: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  // isMember: {
+  //   type: Boolean,
+  //   default: true
+  // },
 });
 
 // Add "email" (instead of "username"), "hash" and "salt" field to store the email (as username), the hashed password and the salt value

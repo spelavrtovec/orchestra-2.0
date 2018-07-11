@@ -3,7 +3,12 @@ const { Schema } = mongoose;
 
 const postSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: "User" },
-  text: String
+  text: String,
+  replies: [{
+    _user: { type: Schema.Types.ObjectId, ref: "User" },
+    text: String,
+    createdAt: {type: Date, default: Date.now()}
+  }]
 }, {
   timestamps: {
     createdAt: 'created_at',
