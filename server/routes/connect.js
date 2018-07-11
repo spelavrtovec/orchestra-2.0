@@ -10,8 +10,8 @@ var router = express.Router();
 
 //to create a new group
 router.post("/newgroup", passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-    let { name, place, info, members } = req.body; //I'm not sure how will I get the inputs from the react form component here
-    const data = {name, place, info, members}
+    let { name, place, info, _members } = req.body; //I'm not sure how will I get the inputs from the react form component here
+    const data = {name, place, info, _members}
 
     Group.create(data)
       .then(group => {
@@ -32,8 +32,13 @@ router.get("/:groupId", passport.authenticate("jwt", config.jwtSession), (req, r
     .populate('_members')
     .populate('posts')
     .populate('_files')
-
-  .exec()
+    .then(group => {
+      res.json({
+        success: true,
+        group
+      });
+    })
+    .catch(error => next(error))
 });
 
 module.exports = router;

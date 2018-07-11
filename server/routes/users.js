@@ -16,32 +16,42 @@ const storage = cloudinaryStorage({
 
 const parser = multer({ storage });
 
+//creating his/her profile when he/she signs up
+// router.post(
+//   "/user",
+//   passport.authenticate("jwt", config.jwtSession),
+//   (req, res, next) => {
+//     let { name, pictureUrl, bio, myRole } = req.body;
+//     const data = { name, pictureUrl, bio, myRole }
 
-// Route to get all members
+//     User.create(data)
+//       .then(user => {
+//         res.json({
+//           success: true,
+//           user
+//         });
+//       })
+//       .catch(error => next(error))
+// });
+
+
+// GET to get all members
 router.get('/', (req, res, next) => {
-  User.find('role: MEMBER')
+  User
+  .find('isPublic: true')
+  .select({
+    //'bio' : 1,
+    //name
+    //whatever
+  })
     .then(users => {
-      res.json(users)
+      res.json(
+        users
+      )
     })
 });
 
-//creating his/her profile when he/she signs up
-router.post(
-  "/user",
-  passport.authenticate("jwt", config.jwtSession),
-  (req, res, next) => {
-    let { name, pictureUrl, bio, myRole } = req.body;
-    const data = { name, pictureUrl, bio, myRole }
 
-    User.create(data)
-      .then(user => {
-        res.json({
-          success: true,
-          user
-        });
-      })
-      .catch(error => next(error))
-});
 
 //getting the profile of the current user
 router.get(
@@ -49,9 +59,13 @@ router.get(
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
   let profile = req.user._id;
-  Profile
-    .findById(profile) 
-    
+  User
+    .findById(profile)
+    .then(user => {
+      res.json(
+        user //the same select thingie
+      )
+    })
 });
 
 // Route to add a picture on one user with Cloudinary
@@ -65,6 +79,7 @@ router.get(
 //     <input type="file" name="picture" />
 //     <input type="submit" value="Upload" />
 //   </form>
+
 router.post('/first-user/pictures', parser.single('picture'), (req, res, next) => {
   console.log('DEBUG req.file', req.file);
   User.findOneAndUpdate({}, { pictureUrl: req.file.url })

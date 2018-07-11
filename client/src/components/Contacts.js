@@ -10,6 +10,7 @@ class Contacts extends Component {
   render() {
     return (
       <div className="Contacts">
+        ghjklčkjkh
       </div>
     );
   }

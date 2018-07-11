@@ -4,7 +4,7 @@ const Post = require("../models/post");
 const jwt = require("jwt-simple");
 const passport = require("passport");
 const config = require("../configs/index");
-
+const Group = require("../models/group");
 var router = express.Router();
 
 //to create a new post in a group
@@ -21,22 +21,23 @@ router.post(
     Post
     .create(data)
     .then(post => {
-        res.json({
+      Group
+      .findByIdAndUpdate(groupId, { $push: { posts:  post } })
+      .then(() =>{
+        Group
+        .save()
+        .then((group) => {
+            console.log(group)
+        })
+    })
+        return res.json({
           success: true,
           post
         });
       })
     .catch(error => next(error));
 
-    Group
-    .findByIdAndUpdate(groupId, { $push: { posts:  post } })
-    .then(() =>{
-      Group
-      .save()
-      .then((group) => {
-          console.log(group)
-      })
-  })
+
 });
 
 //to delete a post:
@@ -58,16 +59,16 @@ router.delete(
 
 
 //to post a file in a group
-router.post(':groupId/file', parser.single('file'), (req, res, next) => {
-  console.log('DEBUG req.file', req.file);
-  Group
-  .findOneAndUpdate(groupId, { fileUrl: req.file.url })
-    .then(() => {
-      res.json({
-        success: true,
-        fileUrl: req.file.url
-      })
-    })
-});
+// router.post(':groupId/file', parser.single('file'), (req, res, next) => {
+//   console.log('DEBUG req.file', req.file);
+//   Group
+//   .findOneAndUpdate(groupId, { fileUrl: req.file.url })
+//     .then(() => {
+//       res.json({
+//         success: true,
+//         fileUrl: req.file.url
+//       })
+//     })
+// });
 
 module.exports = router;

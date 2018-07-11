@@ -46,3 +46,98 @@
 body {
   background-color: lightblue;
 }
+
+/* AGENDA */
+div.container {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  max-height: 100vh;
+}
+
+div.item {
+  display: flex;
+  flex: auto;
+  overflow-y: auto;
+}
+
+#timeline {
+  position: relative;
+  display: table;
+  height: 100vh;
+  margin-left: 150px;
+  margin-top: 10vh;
+}
+
+#timeline div:after {
+  content: '';
+  width: 2px;
+  position: absolute;
+  top: 0rem;
+  bottom: 0rem;
+  left: 60px;
+  background-color: #000000;
+}
+
+#timeline h3 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0rem;
+  margin: 0;
+  font-weight: bolder;
+}
+
+#timeline section.year {
+  position: relative;
+}
+
+#timeline section.year:first-child section {
+  max-width: 70vw;
+}
+
+#timeline section.year section ul {
+  position: relative;
+  list-style-type: none;
+  padding: 0 0 0 75px;
+}
+
+@media (min-width: 62em) {
+  #timeline section.year section ul {
+    padding: 0 0 0 81px;
+  }
+}
+
+#timeline section.year section ul li {
+  margin-left: .5rem;
+}
+
+#timeline section.year section ul li:before {
+  content: '.';
+  margin-left: -.5rem;
+  padding-right: .3rem;
+}
+
+/* ASSOCIATION */
+.bigger {
+  font-weight: bolder;
+  display: flex;
+  margin: 10vh  0 0 150px;
+}
+
+.container2 {
+  max-height: 100vh;
+}
+
+.paragraph1, .paragraph {
+  display: flex;
+  width: 80%;
+  text-align: justify;
+  margin-left: 200px;
+}
+
+
+.conductor {
+  margin-left: 200px;
+  height: 200px;
+  width: 80%;
+}
