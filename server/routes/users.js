@@ -59,19 +59,19 @@ router.get(
 
 
 //for changing the profile info
-router.post('/profile/change', uploadCloud.single("file"), (req, res, next) => {
-  let userId = req.user._id;
+router.post('/:profile/change', [ uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession) ], (req, res, next) => {
+  let profile = req.user._id;
   const { email, name, password, bio, myRole } = req.body;
   const pictureUrl = req.file.url;
 
   let user = { email, name, password, bio, myRole, pictureUrl }
   
   User
-  .findByIdAndUpdate(userId, user, { new: true })
+  .findByIdAndUpdate(profile, user, { new: true })
   .then(() => {
     res.json({
       success: true,
-      user
+      profile
     })
   })
 
