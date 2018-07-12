@@ -3,21 +3,8 @@ const router = express.Router();
 const User = require('../models/user');
 const passport = require('passport');
 const config = require('../configs');
+const uploadCloud = require("../configs/cloudinary");
 
-const cloudinary = require('cloudinary');
-const cloudinaryStorage = require('multer-storage-cloudinary');
-const multer = require('multer');
-
-const storage = cloudinaryStorage({
-  cloudinary,
-  folder: 'oa-files',
-  allowedFormats: ['jpg', 'png', 'gif'],
-  filename: function (req, file, cb) {
-    cb(null, file.originalname); // The file on cloudinary will have the same name as the original file name
-  }
-});
-
-const parser = multer({ storage });
 
 // to get all members
 router.get('/', (req, res, next) => {
@@ -70,18 +57,24 @@ router.get(
 //     <input type="submit" value="Upload" />
 //   </form>
 
-//for changing his/her profile picture
-router.post('/:profile/picture', parser.single('picture'), (req, res, next) => {
-  let profile = req.user._id;
-  console.log(profile)
+
+//for changing the profile info
+router.post('/profile/change', uploadCloud.single("file"), (req, res, next) => {
+  let userId = req.user._id;
+  const { email, name, password, bio, myRole } = req.body;
+  const pictureUrl = req.file.url;
+
+  let user = { email, name, password, bio, myRole, pictureUrl }
+  
   User
-  .findByIdAndUpdate(profile, { pictureUrl: req.file.url }, { new: true })
-    .then(() => {
-      res.json({
-        success: true,
-        profile
-      })
+  .findByIdAndUpdate(userId, user, { new: true })
+  .then(() => {
+    res.json({
+      success: true,
+      user
     })
+  })
+
 });
 
 module.exports = router;
