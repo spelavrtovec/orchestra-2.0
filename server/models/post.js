@@ -5,6 +5,7 @@ const postSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: "User" },
   text: String,
   createdAt: {type: Date, default: Date.now()},
+  _group: String,
   replies: [{
     _user: { type: Schema.Types.ObjectId, ref: "User" },
     text: String,

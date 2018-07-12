@@ -10,39 +10,24 @@ const multer = require('multer');
 
 const storage = cloudinaryStorage({
   cloudinary,
-  folder: 'my-images',
+  folder: 'oa-files',
   allowedFormats: ['jpg', 'png', 'gif'],
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // The file on cloudinary will have the same name as the original file name
+  }
 });
 
 const parser = multer({ storage });
 
-//creating his/her profile when he/she signs up
-// router.post(
-//   "/user",
-//   passport.authenticate("jwt", config.jwtSession),
-//   (req, res, next) => {
-//     let { name, pictureUrl, bio, myRole } = req.body;
-//     const data = { name, pictureUrl, bio, myRole }
-
-//     User.create(data)
-//       .then(user => {
-//         res.json({
-//           success: true,
-//           user
-//         });
-//       })
-//       .catch(error => next(error))
-// });
-
-
-// GET to get all members
+// to get all members
 router.get('/', (req, res, next) => {
   User
   .find('isPublic: true')
   .select({
-    //'bio' : 1,
-    //name
-    //whatever
+    'name': 1,
+    'pictureUrl': 1,
+    'bio': 1,
+    'myRole': 1,
   })
     .then(users => {
       res.json(
@@ -51,9 +36,7 @@ router.get('/', (req, res, next) => {
     })
 });
 
-
-
-//getting the profile of the current user
+// getting the profile of the current user
 router.get(
   "/profile",
   passport.authenticate("jwt", config.jwtSession),
@@ -61,32 +44,42 @@ router.get(
   let profile = req.user._id;
   User
     .findById(profile)
+    .select({
+      'name': 1,
+      'pictureUrl': 1,
+      'bio': 1,
+      'myRole': 1,
+      'role': 1,
+    })
     .then(user => {
       res.json(
-        user //the same select thingie
+        user
       )
     })
 });
 
 // Route to add a picture on one user with Cloudinary
 // To perform the request throw Postman, you need
-// - Endpoint: POST http://localhost:3030/api/first-user/users/pictures
+// - Endpoint: POST http://localhost:3030/api/users/:profile/picture
 // - Select: Body > form-data
 // - Put as key: picture (and select "File")
 // - Upload your file
 // To perform the request in HTML:
-//   <form method="post" enctype="multipart/form-data" action="http://localhost:3030/api/users/first-user/pictures">
+//   <form method="post" enctype="multipart/form-data" action="http://localhost:3030/api/users/:profile/picture">
 //     <input type="file" name="picture" />
 //     <input type="submit" value="Upload" />
 //   </form>
 
-router.post('/first-user/pictures', parser.single('picture'), (req, res, next) => {
-  console.log('DEBUG req.file', req.file);
-  User.findOneAndUpdate({}, { pictureUrl: req.file.url })
+//for changing his/her profile picture
+router.post('/:profile/picture', parser.single('picture'), (req, res, next) => {
+  let profile = req.user._id;
+  console.log(profile)
+  User
+  .findByIdAndUpdate(profile, { pictureUrl: req.file.url }, { new: true })
     .then(() => {
       res.json({
         success: true,
-        pictureUrl: req.file.url
+        profile
       })
     })
 });

@@ -16,13 +16,13 @@ router.post(
     let { text } = req.body;
     let _user = req.user._id;
 
-    const data = { text, _user };
+    const data = { text, _user, groupId };
 
     Post
     .create(data)
     .then(post => {
       Group
-      .findByIdAndUpdate(groupId, { $push: { posts:  post } })
+      .findByIdAndUpdate(groupId, { $push: { posts:  post } }, {new: true})
       .then(() =>{
         Group
         .save()
@@ -36,17 +36,17 @@ router.post(
         });
       })
     .catch(error => next(error));
-
-
 });
 
 //to delete a post:
 router.delete(
-  "/:id",
+  "/:postId",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
+    let postId = req.params.postId
+
     Post
-    .findByIdAndRemove(req.params.id)
+    .findByIdAndRemove(postId)
       .then(post => {
         res.json({
           success: true,
@@ -56,6 +56,30 @@ router.delete(
       .catch(error => next(error));
   }
 );
+
+// to post a reply to a certain post
+router.post(
+  "/:postId/reply",
+  passport.authenticate("jwt", config.jwtSession),
+  (req, res, next) => {
+    let postId = req.params.postId;
+    let text = req.body.text;
+    let _user = req.user._id;
+
+    const data = { text, _user };
+    console.log(data)
+
+      Post
+      .findByIdAndUpdate(postId, { $push: { replies:  data } }, {new: true})
+      .then((post) =>{ 
+        return res.json({
+          success: true,
+          post
+        });
+    })
+    
+    .catch(error => next(error));
+});
 
 
 //to post a file in a group
@@ -70,5 +94,8 @@ router.delete(
 //       })
 //     })
 // });
+
+// cloudinary.uploader.upload("SinglePageSample.pdf", function(result) { }, 
+//                            {public_id: 'single_page_pdf'})
 
 module.exports = router;

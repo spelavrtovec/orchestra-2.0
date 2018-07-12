@@ -26,7 +26,7 @@ class Signup extends Component {
       password: this.state.password,
     }
     api.signup(data)
-      .then(result => {
+      .then(data => {
         console.log('SUCCESS!')
         this.props.history.push("/login") // Redirect to the login page
       })
