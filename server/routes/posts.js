@@ -20,35 +20,34 @@ router.post(
 
     const data = { text, _user, groupId };
 
-    Post
-    .create(data)
-    .then(post => {
-      Group
-      .findByIdAndUpdate(groupId, { $push: { posts:  post } }, {new: true})
-      .then(() =>{
-        Group
-        .save()
-        .then((group) => {
-            console.log(group)
-        })
-    })
+    Post.create(data)
+      .then(post => {
+        Group.findByIdAndUpdate(
+          groupId,
+          { $push: { posts: post } },
+          { new: true }
+        ).then(() => {
+          Group.save().then(group => {
+            console.log(group);
+          });
+        });
         return res.json({
           success: true,
           post
         });
       })
-    .catch(error => next(error));
-});
+      .catch(error => next(error));
+  }
+);
 
 //to delete a post:
 router.delete(
   "/:postId",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
-    let postId = req.params.postId
+    let postId = req.params.postId;
 
-    Post
-    .findByIdAndRemove(postId)
+    Post.findByIdAndRemove(postId)
       .then(post => {
         res.json({
           success: true,
@@ -69,35 +68,38 @@ router.post(
     let _user = req.user._id;
 
     const data = { text, _user };
-    console.log(data)
+    console.log(data);
 
-      Post
-      .findByIdAndUpdate(postId, { $push: { replies:  data } }, {new: true})
-      .then((post) =>{ 
+    Post.findByIdAndUpdate(postId, { $push: { replies: data } }, { new: true })
+      .then(post => {
         return res.json({
           success: true,
           post
         });
-    })
-    
-    .catch(error => next(error));
-});
+      })
+
+      .catch(error => next(error));
+  }
+);
 
 //to post a file to a certain group
 router.post(
-  "/:groupId/file", 
-  [ uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession) ],
+  "/:groupId/file",
+  [uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession)],
   (req, res, next) => {
-  let groupId = req.params.groupId;
-  let fileUrl = req.file.url;
-  
-  Group
-  .findByIdAndUpdate(groupId, { $push: { _files:  fileUrl } }, { new: true })
-  .then(() => {
-    res.json({
-      success: true
-    })
-  })
-});
+    let groupId = req.params.groupId;
+    let fileUrl = req.file.url;
+
+    Group.findByIdAndUpdate(
+      groupId,
+      { $push: { _files: fileUrl } },
+      { new: true }
+    ).then(() => {
+      res.json({
+        success: true
+      });
+    });
+  }
+);
 
 module.exports = router;

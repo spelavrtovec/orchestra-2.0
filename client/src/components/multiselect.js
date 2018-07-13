@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
+import api from '../api';
 
 class MultiSelectField extends Component {
   // let members = _members;
@@ -16,14 +17,20 @@ class MultiSelectField extends Component {
   handleSelectChange(value) {
     console.log("You've selected:", value);
     this.setState({ value });
+    ///do it here, the other change.
   }
 
   render() {
+    // let options = []
+    // api.getMembers()
+    // .then(res => {
+    //    options = res._members
+    // })
     const { stayOpen, value } = this.state;
     const options = [
       {
-        value: "marija",
-        label: "marija"
+        value: "marija", //put the actual members in here
+        label: "marija" //ALSO PASS THE SELECTED VALUES TO THE PARENT
       },
       {
         value: "ana",

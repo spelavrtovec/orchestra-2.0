@@ -50,9 +50,6 @@ class GroupCreate extends Component {
           Name of the group: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
           Place: <input type="text" value={this.state.place} onChange={(e) => {this.handleInputChange("place", e)}} /> <br/>
           Some additional information: <input type="text" value={this.state.info} onChange={(e) => {this.handleInputChange("info", e)}} /> <br/>
-          {/* Members:
-           <input  type="text" value={this.state._members} onChange={(e) => {this.handleInputChange("members", e)}} /> <br/>
-          <Multiselect /> */}
           <MultiSelectField />
           <button onClick={(e) => this.handleClick(e)}>Create a new group</button>
         </form>

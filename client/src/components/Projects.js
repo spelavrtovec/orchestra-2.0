@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import Members from './Members';
+import { Link } from "react-router-dom";
 
 class Projects extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //   }
-  // }
+
   render() {
     return (
       <div className="Projects">
-        <Members />
+        <Link  to="/projects/amadeo-festival">amadeo festival</Link>
+        <Link  to="/projects/orchestra">orchestra</Link>
+        <Link  to="/projects/collaborators">collaborators</Link>
       </div>
     );
   }

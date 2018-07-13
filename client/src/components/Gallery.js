@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 
 class Gallery extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //   }
-  // }
+
   render() {
     return (
       <div className="Gallery">
+      <Link to="/gallery/photos">Photos</Link>
+      <Link to="/gallery/videos">Videos</Link>
       </div>
     );
   }
