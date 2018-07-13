@@ -108,8 +108,19 @@ export default {
 
   ////////////////////signup/login/logout 
   signup(userInfo) {  //HOW TO GET THE INFO (PICTURE) FOR SIGNUP?!
+    const formData = new FormData();
+    formData.append("name", userInfo.name)
+    formData.append("password", userInfo.password)
+    formData.append("email", userInfo.email)
+    formData.append("file", userInfo.file)
+    formData.append("bio", userInfo.bio)
+    formData.append("myRole", userInfo.myRole)
+
     return service
-      .post('/signup', userInfo)
+      .post('/signup', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },})
       .then(res => res.data)
       .catch(errHandler);
   },

@@ -12,24 +12,39 @@ router.post('/signup', uploadCloud.single("file"), (req, res, next) => {
   // extract the info we need from the body of the request
   const { email, name, password, bio, myRole } = req.body;
 
-  if (req.file){
-    pictureUrl = req.file.url
-  }
-  else {
-    pictureUrl = "https://res.cloudinary.com/dvsfkhs3x/image/upload/v1531396737/user.png";
-  }
-  const user = new User({
-    name,
-    pictureUrl,
-    bio,
-    myRole,
-    email,
-  });
+  if (req.body.name === "" || req.body.password === "" || req.body.email === "" ) {
+    var message = "One of your credentials must be missing."
 
-  User.register(user, password, err => {
-    if (err) return next(err);
-    res.json({ success: true });
-  });
+    res.json({
+      success: false, 
+      message
+    });
+  }
+
+  else {
+    if (req.file){
+      pictureUrl = req.file.url
+    }
+    else {
+      pictureUrl = "https://res.cloudinary.com/dvsfkhs3x/image/upload/v1531396737/user.png";
+    }
+
+    const user = new User({
+      name,
+      pictureUrl,
+      bio,
+      myRole,
+      email,
+    });
+    
+    User
+    .register(user, password, err => {
+      if (err) return next(err);
+      res.json({ 
+        success: true,
+      });
+    });
+  }
 });
 
 router.post('/login', (req, res, next) => {

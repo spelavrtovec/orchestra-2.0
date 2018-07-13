@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class Multiselect extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //   }
-  // }
-  render() {                
+
+  
+  render() {
     return (
       <div className="Multiselect">
+    
       </div>
     );
   }

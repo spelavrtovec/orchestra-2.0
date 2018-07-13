@@ -11,6 +11,7 @@ import Gallery from './Gallery';
 import Association from './Association';
 import Connect from './Connect';
 import Profile from './Profile';
+import Members from './Members';
 import './App.css';
 
 
@@ -35,6 +36,7 @@ class App extends Component {
           <Route path="/gallery" component={Gallery} />
           <Route path="/connect" component={Connect} />
           <Route path="/profile" component={Profile} />
+          <Route path="/projects/members" component={Members} />
           <Route render={() => <h2>404</h2>} />
         </Switch> 
       </div>
