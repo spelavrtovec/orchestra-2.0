@@ -7,6 +7,8 @@ const config = require("../configs/index");
 const Group = require("../models/group");
 var router = express.Router();
 
+const uploadCloud = require("../configs/cloudinary");
+
 //to create a new post in a group
 router.post(
   "/:groupId/post",
@@ -81,21 +83,22 @@ router.post(
     .catch(error => next(error));
 });
 
-
-//to post a file in a group
-// router.post(':groupId/file', parser.single('file'), (req, res, next) => {
-//   console.log('DEBUG req.file', req.file);
-//   Group
-//   .findOneAndUpdate(groupId, { fileUrl: req.file.url })
-//     .then(() => {
-//       res.json({
-//         success: true,
-//         fileUrl: req.file.url
-//       })
-//     })
-// });
-
-// cloudinary.uploader.upload("SinglePageSample.pdf", function(result) { }, 
-//                            {public_id: 'single_page_pdf'})
+//to post a file to a certain group
+router.post(
+  "/:groupId/file", 
+  [ uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession) ],
+  (req, res, next) => {
+  let groupId = req.params.groupId;
+  let fileUrl = req.file.url;
+  
+  Group
+  .findByIdAndUpdate(groupId, fileUrl, { new: true })
+  .then(() => {
+    res.json({
+      success: true
+      
+    })
+  })
+});
 
 module.exports = router;

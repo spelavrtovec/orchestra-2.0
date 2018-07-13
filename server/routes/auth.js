@@ -11,7 +11,7 @@ const uploadCloud = require("../configs/cloudinary");
 router.post('/signup', uploadCloud.single("file"), (req, res, next) => {
   // extract the info we need from the body of the request
   const { email, name, password, bio, myRole } = req.body;
-  
+
   if (req.file){
     pictureUrl = req.file.url
   }
@@ -73,15 +73,6 @@ router.post('/login', (req, res, next) => {
     // unauthorized error
     res.sendStatus(401);
   }
-});
-
-// Example of secret route
-// If you use Postman, don't forget to add "Authorization" "Bearer <your-JWT>" (without "<" and ">")
-router.get('/secret', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  res.json({
-    answerToLifeTheUniverseAndEverything: 42,
-    user: req.user
-  });
 });
 
 module.exports = router;

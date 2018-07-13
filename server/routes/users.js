@@ -7,7 +7,7 @@ const uploadCloud = require("../configs/cloudinary");
 
 
 // to get all members
-router.get('/', (req, res, next) => {
+router.get('/projects/members', (req, res, next) => {
   User
   .find('isPublic: true')
   .select({
@@ -45,21 +45,10 @@ router.get(
     })
 });
 
-// Route to add a picture on one user with Cloudinary
-// To perform the request throw Postman, you need
-// - Endpoint: POST http://localhost:3030/api/users/:profile/picture
-// - Select: Body > form-data
-// - Put as key: picture (and select "File")
-// - Upload your file
-// To perform the request in HTML:
-//   <form method="post" enctype="multipart/form-data" action="http://localhost:3030/api/users/:profile/picture">
-//     <input type="file" name="picture" />
-//     <input type="submit" value="Upload" />
-//   </form>
-
-
 //for changing the profile info
-router.post('/:profile/change', [ uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession) ], (req, res, next) => {
+router.put('/change', 
+[ uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession) ],
+(req, res, next) => {
   let profile = req.user._id;
   const { email, name, password, bio, myRole } = req.body;
   const pictureUrl = req.file.url;
@@ -74,7 +63,6 @@ router.post('/:profile/change', [ uploadCloud.single("file"), passport.authentic
       profile
     })
   })
-
 });
 
 module.exports = router;

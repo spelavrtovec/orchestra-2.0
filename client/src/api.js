@@ -12,70 +12,102 @@ const errHandler = err => {
 export default {
   service: service,
   
-  getPosts() {
-    return service
-      .get('/countries')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  postPosts(data) {
-    return service
-      .post('/countries', data)
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  agenda() {
-    return service
-      .get('/agenda')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  contacts() {
-    return service
-      .get('/contacts')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  projects() {
-    return service
-      .get('/projects')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  gallery() {
-    return service
-      .get('/gallery')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  association() {
-    return service
-      .get('/association')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  connect() {
-    return service
-      .get('/connect')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  profile() {
+  //////////////////users
+  getProfile() { //getting the profile
     return service
       .get('/profile')
       .then(res => res.data)
       .catch(errHandler);
   },
-  
-  signup(userInfo) {
+
+  updateProfile(user) { //updating the profile
+    return service
+      .put('/change', user)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getMembers() { //getting all the public profiles of the members
+    return service
+      .get('/projects/members')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  //////////////////groups
+  getGroups() { //getting a list of groups of the certain user
+    return service
+    .get('/connect')
+    .then(res => res.data)
+    .catch(errHandler);
+  },
+
+  newGroup(group) { //posting a new group
+    return service
+      .post('/newgroup', group)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getGroup(groupId) { // to get all the happenings in a certain group
+    return service //??????????????
+    .get(`${groupId}`)
+    .then(res => res.data)
+    .catch(errHandler);
+  },
+
+  deleteGroup(groupId) {  //to delete a group
+    return service
+      .delete(`${groupId}`)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  //////////////////////posts
+  newPost(post, groupId) { //posting a new post
+    return service
+      .post(`${groupId}/post`, post)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deletePost(postId) {  //to delete a post
+    return service
+      .delete(`${postId}`)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  newReply(postId, reply) { //posting a new reply
+    return service
+      .post(`${postId}/post`, reply)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  newFile(file, groupId) { //posting a new file
+    return service
+      .post(`${groupId}/file`, file)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addFile(file, groupId) { //getting a file from the form
+    const formData = new FormData();
+
+    formData.append("file", file)
+    return service
+      .post(`${groupId}/file`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  ////////////////////signup/login/logout 
+  signup(userInfo) {  //HOW TO GET THE INFO (PICTURE) FOR SIGNUP?!
     return service
       .post('/signup', userInfo)
       .then(res => res.data)
@@ -117,16 +149,45 @@ export default {
     return localStorage.getItem('user') != null
   },
 
-
-  addPicture(file) {
-    const formData = new FormData();
-    formData.append("picture", file)
+  ////////////////////////////other
+  agenda() {
     return service
-      .post('/users/first-user/pictures', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
+      .get('/agenda')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  contacts() {
+    return service
+      .get('/contacts')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  projects() {
+    return service
+      .get('/projects')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  gallery() {
+    return service
+      .get('/gallery')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  association() {
+    return service
+      .get('/association')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  connect() {
+    return service
+      .get('/connect')
       .then(res => res.data)
       .catch(errHandler);
   },
