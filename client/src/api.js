@@ -50,7 +50,7 @@ export default {
   },
 
   getGroup(groupId) { // to get all the happenings in a certain group
-    return service //??????????????
+    return service
     .get(`${groupId}`)
     .then(res => res.data)
     .catch(errHandler);

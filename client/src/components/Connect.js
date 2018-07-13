@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import api from '../api';
 import { Link } from 'react-router-dom';
-import Multiselect from './Multiselect';
+import GroupCreate from "./GroupCreate";
 
 class Connect extends Component {
   // constructor(props) {
@@ -15,7 +15,7 @@ class Connect extends Component {
       <div className="Connect">
         {!api.isLoggedIn() && <Link to="/signup">Signup</Link>}
         {!api.isLoggedIn() && <Link to="/login">Login</Link>}
-        <Multiselect />
+        <GroupCreate />
       </div>
     );
   }
