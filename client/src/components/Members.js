@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { Thumbnail, Button, Image } from "react-bootstrap";
 
 class Members extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //   }
-  // }
+
   render() {
     return (
       <div className="Members">

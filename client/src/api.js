@@ -29,7 +29,7 @@ export default {
 
   getMembers() { //getting all the public profiles of the members
     return service
-      .get('/projects/members')
+      .get('/members')
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -165,9 +165,9 @@ export default {
   },
 
   ////////////////////////////other
-  agenda() {
+  repertiore() {
     return service
-      .get('/agenda')
+      .get('/repertiore')
       .then(res => res.data)
       .catch(errHandler);
   },

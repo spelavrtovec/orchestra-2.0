@@ -1,31 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,600');
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 20px;
-}
-
-.App-header {
-  background-color: white;
-  padding: 20px;
-  color: black;
-}
-
-.App-header a {
-  color: black;
-  padding: 0 5px;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 @keyframes App-logo-spin {
@@ -43,16 +20,32 @@
   font-family: 'Roboto', sans-serif;
 }
 
+/* HOME */
+
 body {
-  background-color: lightblue;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-image: url("../images/d.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-blend-mode: overlay;
 }
 
-/* AGENDA */
+/* REPERTOIRE */
 div.container {
   display: flex;
   flex: auto;
   flex-direction: column;
   max-height: 100vh;
+  width: 100vw;
+  padding: 0;
 }
 
 div.item {
@@ -67,16 +60,6 @@ div.item {
   height: 100vh;
   margin-left: 150px;
   margin-top: 10vh;
-}
-
-#timeline div:after {
-  content: '';
-  width: 2px;
-  position: absolute;
-  top: 0rem;
-  bottom: 0rem;
-  left: 60px;
-  background-color: #000000;
 }
 
 #timeline h3 {
@@ -101,27 +84,19 @@ div.item {
   padding: 0 0 0 75px;
 }
 
-@media (min-width: 62em) {
-  #timeline section.year section ul {
-    padding: 0 0 0 81px;
-  }
-}
-
 #timeline section.year section ul li {
   margin-left: .5rem;
 }
 
-#timeline section.year section ul li:before {
-  content: '.';
-  margin-left: -.5rem;
-  padding-right: .3rem;
+section ul li h4 {
+  margin-top: 50px;
 }
 
 /* ASSOCIATION */
 .bigger {
   font-weight: bolder;
   display: flex;
-  margin: 10vh  0 0 150px;
+  margin: 0  0 0 150px;
 }
 
 .container2 {
@@ -135,9 +110,19 @@ div.item {
   margin-left: 200px;
 }
 
-
 .conductor {
   margin-left: 200px;
   height: 200px;
   width: 80%;
+}
+
+
+/* GALLERY */
+.oa-media-youtube {
+  display: flex;
+}
+
+.oa-iframe {
+  margin-left: 10px; 
+  margin-top: 10vh
 }

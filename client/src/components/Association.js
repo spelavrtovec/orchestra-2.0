@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../api";
 import { Link } from "react-router-dom";
+import j from "../images/j.jpg";
 
 class Association extends Component {
 
@@ -28,7 +29,7 @@ class Association extends Component {
             Slovenia, Slovenian Philharmonic orchestra etc.
           </p>
           <br />
-          <img src="../images/j.jpg" alt="conductor" className="conductor" />
+          <img src={j} alt="conductor" className="conductor" />
           <br />
           <br />
           <p className="paragraph">
@@ -46,9 +47,12 @@ class Association extends Component {
             (harp), Franc Avsenek (viola), Igor Krizman (accordion), Goran
             Farkaš (folk instruments), Feri Lainšček (poet), Ana Obreza
             (dramaturg), Rok Kravanja (actor) etc.
+            <br />
             </p>
-            {!api.isLoggedIn() && <Link to="/signup">Signup</Link>}
-            {!api.isLoggedIn() && <Link to="/login">Login</Link>}
+            <div >
+            {!api.isLoggedIn() && <Link className="littleLinks" to="/signup">sign up</Link>} 
+            {!api.isLoggedIn() && <Link className="littleLinks" to="/login">log in</Link>}
+            </div>
         </div>
       </div>
     );

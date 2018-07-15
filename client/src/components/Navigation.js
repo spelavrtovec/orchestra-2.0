@@ -1,33 +1,78 @@
 import React, { Component } from "react";
-import api from '../api';
-import { Link } from 'react-router-dom';
-import logo from '../logo.png';
+import api from "../api";
+import { Link } from "react-router-dom";
+import logo from "../logo.png";
+import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from "react-bootstrap";
 
 class Navigation extends Component {
- 
   handleLogoutClick(e) {
-    api.logout()
-    this.props.history.push("/association")
+    api.logout();
+    this.props.history.push("/association");
   }
 
   render() {
     return (
- <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Link to="/">Home</Link> 
-          <Link to="/agenda">Agenda</Link>
-          <Link to="/contacts">Contacts</Link>
-          <Link to="/projects">Projects</Link>
-          <Link to="/gallery">Gallery</Link>
-          <Link to="/association">Association</Link>
-          {api.isLoggedIn() && <Link to="/profile">Profile</Link>}
-          {api.isLoggedIn() && <Link to="/connect">Connect</Link>}
-          {api.isLoggedIn() && (<Link to="/association" onClick={e => this.handleLogoutClick(e)}>Logout</Link>)}
-        </header>
-               
+      <div className="Navigation">
+        <Navbar inverse collapseOnSelect>
+          <Link to="/">
+            <img src={logo} className="App-logo" alt="logo" />
+          </Link>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Nav>
+              <NavItem eventKey={1} href="/">
+                home
+              </NavItem>
+              <NavItem eventKey={2} href="/contacts">
+                contacts
+              </NavItem>
+              <NavItem eventKey={2} href="/gallery">
+                gallery
+              </NavItem>
+              <NavItem eventKey={2} href="/projects">
+                projects
+              </NavItem>
+              <NavDropdown
+                eventKey={3}
+                title="association"
+                id="basic-nav-dropdown"
+              >
+                <MenuItem eventKey={3.1} href="/association">
+                  about
+                </MenuItem>
+                <MenuItem eventKey={3.2} href="/repertoire">
+                  repertoire
+                </MenuItem>
+                <MenuItem eventKey={3.3} href="/members">
+                  members
+                </MenuItem>
+              </NavDropdown>
+            </Nav>
+            <Nav pullRight>
+              {api.isLoggedIn() && (
+                <NavItem eventKey={1} href="/connect">
+                  connect
+                </NavItem>
+              )}
+              {api.isLoggedIn() && (
+                <NavItem eventKey={1} href="/profile">
+                  profile
+                </NavItem>
+              )}
+              {api.isLoggedIn() && (
+                <NavItem
+                  eventKey={2}
+                  href="/association"
+                  onClick={e => this.handleLogoutClick(e)}
+                >
+                  log out
+                </NavItem>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
-    )
+    );
   }
 }
 

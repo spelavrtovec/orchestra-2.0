@@ -1,26 +1,21 @@
 import React, { Component } from "react";
 
-class Agenda extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //   }
-  // }
+class Repertoire extends Component {
   render() {
     return (
-      <div className="Agenda">
-        <div class="container">
-          <div class="item">
+      <div className="Repertoire">
+        <div className="container">
+          <div className="item">
             <div id="timeline">
               <div>
-                <section class="year">
+                <section className="year">
                   <h3>2 0 1 7</h3>
                   <section>
                     <ul>
                       <li>
                         <h4>
-                          19. 12. "Demon of love”, Feri Lainšček, Ana Obr /eza
-                          and members of Orchestra Amadeo
+                          19. 12. "Demon of love”, Feri Lainšček, Ana Obreza and
+                          members of Orchestra Amadeo
                         </h4>
                         “Loka v snegu” festival, Crystal hall Sokolski dom,
                         Škofja Loka, Slovenia
@@ -111,7 +106,7 @@ class Agenda extends Component {
                     </ul>
                   </section>
                 </section>
-                <section class="year">
+                <section className="year">
                   <h3>2 0 1 6</h3>
                   <section>
                     <ul>
@@ -159,7 +154,7 @@ class Agenda extends Component {
                     </ul>
                   </section>
                 </section>
-                <section class="year">
+                <section className="year">
                   <h3>2 0 1 5</h3>
                   <section>
                     <ul>
@@ -200,7 +195,7 @@ class Agenda extends Component {
                     </ul>
                   </section>
                 </section>
-                <section class="year">
+                <section className="year">
                   <h3>2 0 1 4</h3>
                   <section>
                     <ul>
@@ -238,7 +233,7 @@ class Agenda extends Component {
                     </ul>
                   </section>
                 </section>
-                <section class="year">
+                <section className="year">
                   <h3>2 0 1 3</h3>
                   <section>
                     <ul>
@@ -306,4 +301,4 @@ class Agenda extends Component {
   }
 }
 
-export default Agenda;
+export default Repertoire;
