@@ -9,7 +9,7 @@ class Association extends Component {
     return (
       <div className="Association">
         <p className="bigger">A B O U T</p>
-        <div className="ml-2 text-justify">
+        <div className="text-justify">
           Chamber orchestra Amadeo was founded in Škofja Loka in 2013 and till
           present-day exists under artistic leadership and guidance of pianist
           and conductor Tilen Draksler. The main purpose of the orchestra is to

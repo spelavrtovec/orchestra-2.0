@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import api from "../api";
-import { Link } from "react-router-dom";
 import logo from "../logo.png";
 import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from "react-bootstrap";
 
@@ -14,12 +13,12 @@ class Navigation extends Component {
     return (
       <div className="Navigation">
         <Navbar inverse collapseOnSelect>
-          <Link to="/">
-            <img src={logo} className="App-logo" alt="logo" />
-          </Link>
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav>
+              <NavItem href="/">
+                <img src={logo} className="App-logo" alt="logo" />
+              </NavItem>
               <NavItem eventKey={1} href="/">
                 home
               </NavItem>
