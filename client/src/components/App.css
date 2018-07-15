@@ -96,26 +96,15 @@ section ul li h4 {
 .bigger {
   font-weight: bolder;
   display: flex;
-  margin: 0  0 0 150px;
+  margin: 0  0 0 10em;
 }
 
-.container2 {
-  max-height: 100vh;
-}
-
-.paragraph1, .paragraph {
+.paragraph {
   display: flex;
   width: 80%;
   text-align: justify;
-  margin-left: 200px;
+  margin-left: 14em;
 }
-
-.conductor {
-  margin-left: 200px;
-  height: 200px;
-  width: 80%;
-}
-
 
 /* GALLERY */
 .oa-media-youtube {
