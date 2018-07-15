@@ -10,6 +10,7 @@ const userSchema = new Schema({
   pictureUrl: String,
   bio: String,
   myRole: String,
+  value: String,
   _groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   isPublic: {
     type: Boolean,

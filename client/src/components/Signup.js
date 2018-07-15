@@ -10,6 +10,7 @@ class Signup extends Component {
       password: "",
       pictureUrl: null,
       bio: "",
+      value: "",
       myRole: "",
       errorMessage: "",
     }
@@ -37,6 +38,7 @@ class Signup extends Component {
       password: this.state.password,
       file: this.state.pictureUrl,
       bio: this.state.bio,
+      value: this.state.name,
       myRole: this.state.myRole,
     }
     api.signup(data)

@@ -35,16 +35,19 @@ export default {
   },
 
   //////////////////groups
-  getGroups() { //getting a list of groups of the certain user
-    return service
-    .get('/connect')
-    .then(res => res.data)
-    .catch(errHandler);
-  },
 
-  newGroup(group) { //posting a new group
+  newGroup(groupInfo) {  //post a new group
+    const formData = new FormData();
+    formData.append("name", groupInfo.name)
+    formData.append("place", groupInfo.place)
+    formData.append("info", groupInfo.info)
+    formData.append("_members", groupInfo.members)
+
     return service
-      .post('/newgroup', group)
+      .post('/newgroup', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },})
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -115,6 +118,7 @@ export default {
     formData.append("file", userInfo.file)
     formData.append("bio", userInfo.bio)
     formData.append("myRole", userInfo.myRole)
+    formData.append("value", userInfo.value)
 
     return service
       .post('/signup', formData, {
@@ -196,7 +200,7 @@ export default {
       .catch(errHandler);
   },
 
-  connect() {
+  connect() {         //getting all the happenings in the connect page
     return service
       .get('/connect')
       .then(res => res.data)

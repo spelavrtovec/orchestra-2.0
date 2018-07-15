@@ -10,7 +10,7 @@ const uploadCloud = require("../configs/cloudinary");
 
 router.post('/signup', uploadCloud.single("file"), (req, res, next) => {
   // extract the info we need from the body of the request
-  const { email, name, password, bio, myRole } = req.body;
+  const { email, name, password, bio, value, myRole } = req.body;
 
   if (req.body.name === "" || req.body.password === "" || req.body.email === "" ) {
     var message = "One of your credentials must be missing."
@@ -33,6 +33,7 @@ router.post('/signup', uploadCloud.single("file"), (req, res, next) => {
       name,
       pictureUrl,
       bio,
+      value,
       myRole,
       email,
     });

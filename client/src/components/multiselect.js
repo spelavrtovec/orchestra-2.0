@@ -17,15 +17,15 @@ class MultiSelectField extends Component {
   handleSelectChange(value) {
     console.log("You've selected ", value);
     this.setState({ value });
-    this.props.onChange(this.state.value);
-  }
+    this.props.onChange(this.state.value); //getting the selected members
+  } 
 
   render() {
     let options = []
-    api.getMembers()
-    .then(res => {
-       options = res._members
-    })
+    // api.getListMembers()
+    // .then(res => {
+    //    options = res._members
+    // })
     const { stayOpen, value } = this.state;
 
     return (
@@ -38,7 +38,7 @@ class MultiSelectField extends Component {
           placeholder="Select your favourite(s)"
           removeSelected={this.state.removeSelected}
           simpleValue
-          value={value}
+          value={value} 
         />
       </div>
     );
