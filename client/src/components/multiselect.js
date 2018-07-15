@@ -22,10 +22,10 @@ class MultiSelectField extends Component {
 
   render() {
     let options = []
-    // api.getListMembers()
-    // .then(res => {
-    //    options = res._members
-    // })
+    api.connect()
+    .then(res => {
+       options = res._members
+    })
     const { stayOpen, value } = this.state;
 
     return (

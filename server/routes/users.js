@@ -6,7 +6,7 @@ const config = require('../configs');
 const uploadCloud = require("../configs/cloudinary");
 
 
-// to get all members
+// to get all members with isPublic: true
 router.get('/projects/members', (req, res, next) => {
   User
   .find('isPublic: true')
@@ -14,6 +14,25 @@ router.get('/projects/members', (req, res, next) => {
     'name': 1,
     'pictureUrl': 1,
     'bio': 1,
+    'value': 1,
+    'myRole': 1,
+  })
+    .then(users => {
+      res.json(
+        users
+      )
+    })
+});
+
+// to get all members
+router.get('/connect', (req, res, next) => {
+  User
+  .find()
+  .select({
+    'name': 1,
+    'pictureUrl': 1,
+    'bio': 1,
+    'value': 1,
     'myRole': 1,
   })
     .then(users => {
