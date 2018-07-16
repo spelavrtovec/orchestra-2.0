@@ -11,34 +11,48 @@ class MultiSelectField extends Component {
       removeSelected: true,
       stayOpen: true,
       value: [],
+      options: null,
     };
   }
 
+  componentDidMount() {
+    api.connect()
+    .then(res => {
+      console.log("res  ",res)
+      res = res.map( (element) => {
+        return {
+          label: element.name,
+          value: element._id,
+        }
+      }
+      )
+      console.log(res)
+       this.setState({
+        options : res
+       })
+    })
+  }
+
   handleSelectChange(value) {
-    console.log("You've selected ", value);
-    this.setState({ value });
-    this.props.onChange(this.state.value); //getting the selected members
+    console.log("You've selected 1111 ", value);
+    this.setState({ value })
+    console.log("You've selected 22222", value);
+    this.props.onChange(value);
+    console.log("You've selected 3333", value); //getting the selected members
   } 
 
   render() {
-    let options = []
-    api.connect()
-    .then(res => {
-       options = res._members
-    })
-    const { stayOpen, value } = this.state;
-
     return (
-      <div className="section">
+      this.state.options && <div className="section">
         <Select
-          closeOnSelect={!stayOpen}
+          closeOnSelect={!this.state.stayOpen}
           multi
           onChange={this.handleSelectChange.bind(this)}
-          options={options}
+          options={this.state.options}
           placeholder="Select your favourite(s)"
           removeSelected={this.state.removeSelected}
           simpleValue
-          value={value} 
+          value={this.state.value} 
         />
       </div>
     );

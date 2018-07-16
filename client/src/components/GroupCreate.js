@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import api from '../api';
 import MultiSelectField from './Multiselect';
+import { FormGroup, FormControl } from "react-bootstrap";
 
 class GroupCreate extends Component {
   constructor(props) {
     super(props)
+    api.loadUser()
     this.state = {
       name: "",
       place: "",
@@ -27,8 +29,9 @@ class GroupCreate extends Component {
       name: this.state.name,
       place: this.state.place,
       info: this.state.info,
-      _members: this.state.x, //getting the selected members
+      _members: this.state._members, //getting the selected members
     }
+    
     api.newGroup(data)
       .then(res => {
         if (res.success === false){
@@ -44,20 +47,37 @@ class GroupCreate extends Component {
   }
 
   changeX(value) {
+    value = value.split(",");
+    
     this.setState({
       _members: value //getting the selected members
     })
+    console.log("You've selected ggggg3333", value);
   }
 
   render() {   
     return (
-      <div className="GroupCreate">
+      <div className="groupCreate">
         <h2>Create a new group</h2>
         <form>
-          Name of the group: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Place: <input type="text" value={this.state.place} onChange={(e) => {this.handleInputChange("place", e)}} /> <br/>
-          Some additional information: <input type="text" value={this.state.info} onChange={(e) => {this.handleInputChange("info", e)}} /> <br/>
+          Name: 
+          <FormGroup>
+            <FormControl type="text"  value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} placeholder="group name here" />
+          </FormGroup>
+       <br/>
+          Place: 
+          <FormGroup bsSize="small">
+            <FormControl type="text"  value={this.state.place} onChange={(e) => {this.handleInputChange("place", e)}} placeholder="where is it happening?" />
+          </FormGroup>
+       <br/>
+          Some additional information: 
+          <FormGroup bsSize="small">
+            <FormControl type="text"  value={this.state.info} onChange={(e) => {this.handleInputChange("info", e)}} placeholder="like the repertoire or something" />
+          </FormGroup>
+       <br/>
+          Attendees:
           <MultiSelectField  value={this.state._members} onChange={this.changeX.bind(this)}/> 
+       <br/>
           <button onClick={(e) => this.handleClick(e)}>Create a new group</button>
         </form>
         <div>{ this.state.errorMessage }</div>
@@ -67,3 +87,6 @@ class GroupCreate extends Component {
 }
 
 export default GroupCreate;
+
+
+

@@ -11,11 +11,13 @@ var router = express.Router();
 // to create a new group
 router.post("/newgroup", passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
     let { name, place, info, _members } = req.body; 
+
     const data = { name, place, info, _members }
+    console.log("dataaaa", data)
 
     if (req.body.name === "" || req.body._members === [] || req.body.info === "" ) {
       var message = "One or more of the stuff that you need to put in must be missing."
-  
+      console.log("adios")
       res.json({
         success: false, 
         message
@@ -24,12 +26,15 @@ router.post("/newgroup", passport.authenticate("jwt", config.jwtSession), (req, 
     else {
       Group.create(data)
         .then(group => {
+          console.log("hola")
           res.json({
             success: true,
             group
           });
         })
-        .catch(error => next(error))
+        .catch(error => {
+          console.log("por fin")
+          next(error)})
     }
     }
 );

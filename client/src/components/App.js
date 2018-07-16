@@ -12,8 +12,9 @@ import Association from './Association';
 import Connect from './Connect';
 import Profile from './Profile';
 import Members from './Members';
+import Group from './Group';
 import './App.css';
-
+import api from '../api';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/connect" component={Connect} />
           <Route path="/profile" component={Profile} />
           <Route path="/members" component={Members} />
+          <Route path={`/connect/${groupId}`} component={Group} />
           <Route render={() => <h2>404</h2>} />
         </Switch> 
       </div>
@@ -41,3 +43,5 @@ class App extends Component {
 }
 
 export default App;
+
+

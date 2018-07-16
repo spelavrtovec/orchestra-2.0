@@ -36,25 +36,18 @@ export default {
 
   //////////////////groups
 
-  newGroup(groupInfo) {  //post a new group
-    const formData = new FormData();
-    formData.append("name", groupInfo.name)
-    formData.append("place", groupInfo.place)
-    formData.append("info", groupInfo.info)
-    formData.append("_members", groupInfo.members)
+  newGroup(data) {  //post a new group
 
+  console.log("dataaa", data)
     return service
-      .post('/newgroup', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },})
+      .post('/connect/newgroup', data)
       .then(res => res.data)
       .catch(errHandler);
   },
 
   getGroup(groupId) { // to get all the happenings in a certain group
     return service
-    .get(`${groupId}`)
+    .get(`/connect/${groupId}`)
     .then(res => res.data)
     .catch(errHandler);
   },
@@ -202,7 +195,7 @@ export default {
 
   connect() {         //getting all the happenings in the connect page
     return service
-      .get('/connect')
+      .get('/users/connect')
       .then(res => res.data)
       .catch(errHandler);
   },

@@ -34,13 +34,15 @@ class Post extends Component {
         <h2>Create a new post</h2>
         <form>
           Text:{" "}
-          <input
-            type="text"
-            value={this.state.text}
-            onChange={e => {
-              this.handleInputChange("post", e);
-            }}
-          />{" "}
+          <FormGroup bsSize="small">
+            <FormControl
+              type="text"
+              value={this.state.text}
+              onChange={e => {
+                this.handleInputChange("post", e);
+              }}
+              placeholder="Small text"/>
+          </FormGroup>{" "}
           <br />
           <button onClick={e => this.handleClick(e)}>Post</button>
         </form>
