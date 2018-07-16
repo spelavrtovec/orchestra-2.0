@@ -48,13 +48,6 @@ router.get("/profile",passport.authenticate("jwt", config.jwtSession),(req, res,
   let profile = req.user._id;
   User
     .findById(profile)
-    // .select({
-    //   'name': 1,
-    //   'pictureUrl': 1,
-    //   'bio': 1,
-    //   'myRole': 1,
-    //   'role': 1,
-    // })
     .then(user => {
       console.log("USER:", user)
       res.json(

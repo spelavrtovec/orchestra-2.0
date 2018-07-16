@@ -18,8 +18,7 @@ class MultiSelectField extends Component {
   componentDidMount() {
     api.connect()
     .then(res => {
-      console.log("res  ",res)
-      res = res.map( (element) => {
+      res = res.map((element) => {
         return {
           label: element.name,
           value: element._id,

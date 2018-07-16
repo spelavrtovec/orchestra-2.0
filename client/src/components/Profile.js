@@ -14,9 +14,9 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    console.log("USER:");
-    api.getProfile().then(user => {
-      console.log("USER:", user);
+    
+    api.getProfile()
+    .then(user => {
       this.setState({
         name: user.name,
         pictureUrl: user.pictureUrl,

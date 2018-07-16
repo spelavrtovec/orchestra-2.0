@@ -61,6 +61,16 @@ export default {
       .catch(errHandler);
   },
 
+  getGroups() {         //getting all the happenings in the connect page
+    console.log("jjjj")
+    return service
+      .get('/connect/connect')
+      .then(res => {
+        console.log("res.data  ",res.data.user._groups)
+        return res.data.user._groups})
+      .catch(errHandler);
+  },
+
   //////////////////////posts
   newPost(post, groupId) { //posting a new post
     return service

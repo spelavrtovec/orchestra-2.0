@@ -52,7 +52,7 @@ class GroupCreate extends Component {
     this.setState({
       _members: value //getting the selected members
     })
-    console.log("You've selected ggggg3333", value);
+    console.log("You've selected ", value);
   }
 
   render() {   
