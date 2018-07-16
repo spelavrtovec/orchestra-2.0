@@ -24,7 +24,6 @@ class GroupCreate extends Component {
   }
 
   handleClick(e) {
-    e.preventDefault()
     let data = {
       name: this.state.name,
       place: this.state.place,
@@ -39,10 +38,16 @@ class GroupCreate extends Component {
             errorMessage: res.message
           })
         }
-        else {this.props.history.push("/")} // Redirect to the connect page
-      })
-      .catch(err => {
-        console.log('ERROR!!!!!!')
+        else {
+          return api.getGroups()
+          .then(groups => {
+            // Redirect to the connect page
+            this.props.history.push("/connect")
+          })
+          .catch(err => {
+            console.log('ERROR!!!!!!')
+          })
+        } 
       })
   }
 

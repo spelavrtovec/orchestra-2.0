@@ -47,7 +47,16 @@ export default {
       .catch(errHandler);
   },
 
+  getGroups() {         //getting all the happenings in the connect page
+    return service
+      .get('/connect/connect')
+      .then(res => {
+        return res.data.user._groups})
+      .catch(errHandler);
+  },
+
   getGroup(groupId) { // to get all the happenings in a certain group
+    console.log(groupId)
     return service
     .get(`/connect/${groupId}`)
     .then(res => res.data)
@@ -56,18 +65,8 @@ export default {
 
   deleteGroup(groupId) {  //to delete a group
     return service
-      .delete(`${groupId}`)
+      .delete(`/connect/${groupId}`)
       .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  getGroups() {         //getting all the happenings in the connect page
-    console.log("jjjj")
-    return service
-      .get('/connect/connect')
-      .then(res => {
-        console.log("res.data  ",res.data.user._groups)
-        return res.data.user._groups})
       .catch(errHandler);
   },
 
@@ -105,7 +104,7 @@ export default {
 
     formData.append("file", file)
     return service
-      .post(`${groupId}/file`, formData, {
+      .post(`/${groupId}/file`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

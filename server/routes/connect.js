@@ -61,13 +61,14 @@ router.get("/connect", passport.authenticate("jwt", config.jwtSession), (req, re
 // to display all the happenings in a certain group
 router.get("/:groupId", passport.authenticate("jwt", config.jwtSession), (req, res, next) => { //get the component of the specific group
   let groupId = req.params.groupId
-
+  
   Group
-    .findById(groupId)
-    .populate('_members')
-    .populate('posts')
-    .populate('_files')
-    .then(group => {
+  .findById(groupId)
+  .populate('_members')
+  .populate('posts')
+  .populate('_files')
+  .then(group => {
+    console.log("group", group._id)
       res.json({
         success: true,
         group
@@ -75,9 +76,6 @@ router.get("/:groupId", passport.authenticate("jwt", config.jwtSession), (req, r
     })
     .catch(error => next(error))
 });
-
-
-
 
 //to delete a group
 router.delete(

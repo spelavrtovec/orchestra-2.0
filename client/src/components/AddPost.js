@@ -20,7 +20,7 @@ class AddPost extends Component {
   handleClick(e) {
     e.preventDefault();
     let data = {
-      text: ""
+      text: this.state.text,
     };
     api
       .newPost(data)
@@ -33,18 +33,11 @@ class AddPost extends Component {
   render() {
     return (
       <div className="Post">
-        <h2>Create a new post</h2>
+        <h6>Create a new post</h6>
         <form>
-          Text:{" "}
-          <FormGroup bsSize="small">
-            <FormControl
-              type="text"
-              value={this.state.text}
-              onChange={e => {
-                this.handleInputChange("post", e);
-              }}
-              placeholder="Small text"/>
-          </FormGroup>{" "}
+          <FormGroup>
+            <FormControl type="text"  value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} placeholder="new post" />
+          </FormGroup>
           <br />
           <button onClick={e => this.handleClick(e)}>Post</button>
         </form>

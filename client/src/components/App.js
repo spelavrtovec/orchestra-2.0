@@ -19,26 +19,12 @@ import api from '../api';
 class App extends Component {
   constructor(props) {
     super(props)
-    
     api.loadUser();
 
-    this.state = {
-      groupId: "",
-    }
   }
 
-  componentDidMount() {
-    api.getGroup()
-    .then(group => {
-      this.setState({
-        groupId: group.groupId,
-      })
-    })
-  }
-
-
-  render() {                
-    return (
+  render() {             
+    return  (
       <div>
         <Navigation />
         <Switch>
@@ -50,10 +36,10 @@ class App extends Component {
           <Route path="/contacts" component={Contacts} />
           <Route path="/projects" component={Projects} />
           <Route path="/gallery" component={Gallery} />
-          <Route path="/connect" component={Connect} />
+          <Route path="/connect" exact component={Connect} />
           <Route path="/profile" component={Profile} />
           <Route path="/members" component={Members} />
-          <Route path={`/connect/${this.state.groupId}`} component={Group} />
+          <Route path={`/connect/:groupId`} component={Group} /> 
           <Route render={() => <h2>404</h2>} />
         </Switch> 
       </div>
