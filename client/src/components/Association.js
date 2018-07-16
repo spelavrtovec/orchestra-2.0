@@ -7,7 +7,7 @@ import { Image } from "react-bootstrap";
 class Association extends Component {
   render() {
     return (
-      <div className="Association">
+      <div className="Association container">
         <p className="bigger">A B O U T</p>
         <div className="text-justify">
           Chamber orchestra Amadeo was founded in Škofja Loka in 2013 and till

@@ -7,7 +7,7 @@ const uploadCloud = require("../configs/cloudinary");
 
 
 // to get all members with isPublic: true
-router.get('/projects/members', (req, res, next) => {
+router.get('/members', (req, res, next) => {
   User
   .find('isPublic: true')
   .select({
@@ -43,21 +43,20 @@ router.get('/connect', (req, res, next) => {
 });
 
 // getting the profile of the current user
-router.get(
-  "/profile",
-  passport.authenticate("jwt", config.jwtSession),
-  (req, res, next) => {
+router.get("/profile",passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
+  console.log("PROFILE ROUTE:")
   let profile = req.user._id;
   User
     .findById(profile)
-    .select({
-      'name': 1,
-      'pictureUrl': 1,
-      'bio': 1,
-      'myRole': 1,
-      'role': 1,
-    })
+    // .select({
+    //   'name': 1,
+    //   'pictureUrl': 1,
+    //   'bio': 1,
+    //   'myRole': 1,
+    //   'role': 1,
+    // })
     .then(user => {
+      console.log("USER:", user)
       res.json(
         user
       )

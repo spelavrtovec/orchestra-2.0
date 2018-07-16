@@ -4,7 +4,7 @@ class Repertoire extends Component {
   render() {
     return (
       <div className="Repertoire">
-        <div className="container">
+        <div className="Nice">
           <div className="item">
             <div id="timeline">
               <div>

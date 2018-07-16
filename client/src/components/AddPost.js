@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import api from '../api';
+import {FormControl, FormGroup} from "react-bootstrap";
 
-class Post extends Component {
+class AddPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,4 +54,4 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default AddPost;

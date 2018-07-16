@@ -14,9 +14,13 @@ export default {
   
   //////////////////users
   getProfile() { //getting the profile
-    return service
-      .get('/profile')
-      .then(res => res.data)
+    console.log("API")
+        return service
+      .get('/users/profile')
+      .then(res => {
+        console.log("RETURN TO API FROM ROUTE",res.data)
+        return res.data
+      })
       .catch(errHandler);
   },
 
@@ -29,7 +33,7 @@ export default {
 
   getMembers() { //getting all the public profiles of the members
     return service
-      .get('/members')
+      .get('users/members')
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -37,8 +41,6 @@ export default {
   //////////////////groups
 
   newGroup(data) {  //post a new group
-
-  console.log("dataaa", data)
     return service
       .post('/connect/newgroup', data)
       .then(res => res.data)
@@ -147,6 +149,8 @@ export default {
     if (!userData) return false;
     const user = JSON.parse(userData);
     if (user.token && user.name) {
+      console.log("loadUser for Authorization");
+      
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
       return user;
     }

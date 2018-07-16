@@ -40,7 +40,7 @@ body {
 }
 
 /* REPERTOIRE */
-div.container {
+div.Nice{
   display: flex;
   flex: auto;
   flex-direction: column;
@@ -115,4 +115,10 @@ section ul li h4 {
 .oa-iframe {
   margin-left: 10px; 
   margin-top: 10vh
+}
+
+/* PROFILE */
+.pictureimg {
+  width: 200px;
+  height: 200px;
 }

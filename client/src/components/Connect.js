@@ -7,7 +7,7 @@ class Connect extends Component {
 
   render() {
     return (
-      <div className="Connect">
+      <div className="Connect container">
         {!api.isLoggedIn() && <Link to="/signup">Signup</Link>}
         {!api.isLoggedIn() && <Link to="/login">Login</Link>}
         <GroupCreate />

@@ -39,7 +39,7 @@ class GroupCreate extends Component {
             errorMessage: res.message
           })
         }
-        else {this.props.history.push("/connect")} // Redirect to the connect page
+        else {this.props.history.push("/")} // Redirect to the connect page
       })
       .catch(err => {
         console.log('ERROR!!!!!!')
@@ -65,6 +65,9 @@ class GroupCreate extends Component {
             <FormControl type="text"  value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} placeholder="group name here" />
           </FormGroup>
        <br/>
+       Attendees:
+          <MultiSelectField  value={this.state._members} onChange={this.changeX.bind(this)}/> 
+       <br/>
           Place: 
           <FormGroup bsSize="small">
             <FormControl type="text"  value={this.state.place} onChange={(e) => {this.handleInputChange("place", e)}} placeholder="where is it happening?" />
@@ -74,9 +77,6 @@ class GroupCreate extends Component {
           <FormGroup bsSize="small">
             <FormControl type="text"  value={this.state.info} onChange={(e) => {this.handleInputChange("info", e)}} placeholder="like the repertoire or something" />
           </FormGroup>
-       <br/>
-          Attendees:
-          <MultiSelectField  value={this.state._members} onChange={this.changeX.bind(this)}/> 
        <br/>
           <button onClick={(e) => this.handleClick(e)}>Create a new group</button>
         </form>

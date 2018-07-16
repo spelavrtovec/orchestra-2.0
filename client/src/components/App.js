@@ -17,6 +17,11 @@ import './App.css';
 import api from '../api';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    api.loadUser();
+  }
+
 
   render() {                
     return (
@@ -34,7 +39,7 @@ class App extends Component {
           <Route path="/connect" component={Connect} />
           <Route path="/profile" component={Profile} />
           <Route path="/members" component={Members} />
-          <Route path={`/connect/${groupId}`} component={Group} />
+          {/* <Route path={`/connect/${groupId}`} component={Group} /> ????? */}
           <Route render={() => <h2>404</h2>} />
         </Switch> 
       </div>
