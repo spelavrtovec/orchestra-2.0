@@ -97,7 +97,7 @@ export default {
     formData.append("file", data.file)
 
     return service
-      .post(`/users/${data.groupId}/file`, formData, {
+      .post(`/posts/${data.groupId}/file`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

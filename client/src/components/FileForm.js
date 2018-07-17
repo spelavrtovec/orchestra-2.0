@@ -18,7 +18,7 @@ class FileForm extends Component {
   handleClick(e) {
     e.preventDefault()
     let data = {
-      file: this.state.fileUrl,
+      fileUrl: this.state.fileUrl,
     }
     api.addFile(data)
   }

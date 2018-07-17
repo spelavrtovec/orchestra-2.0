@@ -23,6 +23,7 @@ class Group extends Component {
       this.setState({
         group: group
       });
+      console.log("wjbewbjefwvfewefk",this.state.group)
     });
   }
 

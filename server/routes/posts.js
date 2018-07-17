@@ -102,13 +102,15 @@ router.post(
     let groupId = req.params.groupId;
     let fileUrl = req.file.url;
 
-    Group.findByIdAndUpdate(
+    Group
+    .findByIdAndUpdate(
       groupId,
       { $push: { _files: fileUrl } },
       { new: true }
-    ).then(() => {
-      res.json({
-        success: true
+    ).then(group => {
+      return res.json({
+        success: true,
+        group
       });
     });
   }
