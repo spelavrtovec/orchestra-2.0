@@ -14,11 +14,9 @@ export default {
   
   //////////////////users
   getProfile() { //getting the profile
-    console.log("API")
         return service
       .get('/users/profile')
       .then(res => {
-        console.log("RETURN TO API FROM ROUTE",res.data)
         return res.data
       })
       .catch(errHandler);
@@ -56,6 +54,7 @@ export default {
   },
 
   getGroup(groupId) { // to get all the happenings in a certain group
+    console.log(groupId)
     return service
     .get(`/connect/${groupId}`)
     .then(res => res.data)
@@ -91,7 +90,7 @@ export default {
       .catch(errHandler);
   },
 
-  addFile(data) { //getting a file from the form
+  addFile(data) {           //getting a file from the form
     const formData = new FormData();
 
     formData.append("file", data.file)

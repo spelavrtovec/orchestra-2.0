@@ -73,7 +73,7 @@ router.get(
   (req, res, next) => {
     //get the component of the specific group
     let groupId = req.params.groupId;
-
+    console.log("groupId", groupId)
     Group
     .findById(groupId)
       .populate({ path: "_members", model: "User"})
@@ -82,10 +82,16 @@ router.get(
         model: "Post",
         populate: {
           path: "_user",
-          model: "User"
+          model: "User",
         }
       })
-      .populate("_files")
+      .populate({
+        path: "posts",
+        populate: {
+          path: "replies._user",
+        }
+      })
+
       .then(group => {
         console.log(group)
         return res.json({
@@ -96,6 +102,9 @@ router.get(
       .catch(error => next(error));
   }
 );
+
+
+
 
 //to delete a group
 router.delete(

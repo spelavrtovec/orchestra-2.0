@@ -15,6 +15,7 @@ class Group extends Component {
   }
 
   componentDidMount() {
+    console.log("mountedd")
     this.updateGroupFromApi();
   }
 
