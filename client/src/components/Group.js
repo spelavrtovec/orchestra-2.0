@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddPost from './AddPost';
 import api from '../api';
+import Post from './Post';
 
 class Group extends Component {
 
@@ -21,12 +22,11 @@ class Group extends Component {
   }
 
   render() {
-    console.log("hii ",this.state.group)
     return this.state.group && (
       <div className="group">
      <h4>Group: {this.state.group.group.name}</h4>
-        <AddPost />
-     
+        <AddPost groupId={this.props.match.params.groupId}/>
+        <Post />
       </div>
     )}
 }

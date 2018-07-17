@@ -6,7 +6,6 @@ import { FormGroup, FormControl } from "react-bootstrap";
 class GroupCreate extends Component {
   constructor(props) {
     super(props)
-    api.loadUser()
     this.state = {
       name: "",
       place: "",

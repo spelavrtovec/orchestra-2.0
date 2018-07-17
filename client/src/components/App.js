@@ -40,6 +40,7 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/members" component={Members} />
           <Route path={`/connect/:groupId`} component={Group} /> 
+          <Route path={`/posts/:groupId/post`} component={Group} /> 
           <Route render={() => <h2>404</h2>} />
         </Switch> 
       </div>

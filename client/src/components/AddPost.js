@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import api from '../api';
-import {FormControl, FormGroup} from "react-bootstrap";
+import { FormControl, FormGroup } from "react-bootstrap";
 
 class AddPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ""
+      text: "",
+      groupId: ""
     };
   }
 
@@ -21,6 +22,7 @@ class AddPost extends Component {
     e.preventDefault();
     let data = {
       text: this.state.text,
+      groupId: this.props.groupId,
     };
     api
       .newPost(data)
@@ -36,9 +38,8 @@ class AddPost extends Component {
         <h6>Create a new post</h6>
         <form>
           <FormGroup>
-            <FormControl type="text"  value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} placeholder="new post" />
+            <FormControl type="text"  value={this.state.text || ''} onChange={(e) => {this.handleInputChange("text", e)}} placeholder="new post" />
           </FormGroup>
-          <br />
           <button onClick={e => this.handleClick(e)}>Post</button>
         </form>
         <div>{this.state.errorMessage}</div>

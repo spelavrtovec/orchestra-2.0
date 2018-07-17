@@ -17,19 +17,27 @@ router.post(
     let groupId = req.params.groupId;
     let { text } = req.body;
     let _user = req.user._id;
-
+    
     const data = { text, _user, groupId };
 
+    if (req.body.text === "" ) {
+      res.json({
+        success: false, 
+      });
+    }
+    else {
     Post.create(data)
       .then(post => {
         Group.findByIdAndUpdate(
           groupId,
-          { $push: { posts: post } },
-          { new: true }
-        ).then(() => {
-          Group.save().then(group => {
-            console.log(group);
-          });
+          { $push: { posts: post } },{ new: true })
+          .then(() => {
+          console.log("ok")
+          // Group
+          // .save()
+          // .then(group => {
+          //   console.log("this is the post", post);
+          // });
         });
         return res.json({
           success: true,
@@ -37,6 +45,7 @@ router.post(
         });
       })
       .catch(error => next(error));
+    }
   }
 );
 

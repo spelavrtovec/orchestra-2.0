@@ -71,9 +71,10 @@ export default {
   },
 
   //////////////////////posts
-  newPost(post, groupId) { //posting a new post
+  newPost(data) { //posting a new post
+    console.log("dataaaaa",data)
     return service
-      .post(`${groupId}/post`, post)
+      .post(`/posts/${data.groupId}/post`, data.text)
       .then(res => res.data)
       .catch(errHandler);
   },

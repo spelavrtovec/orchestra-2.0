@@ -3,6 +3,7 @@ import api from '../api';
 import { Link } from 'react-router-dom';
 import GroupCreate from "./GroupCreate";
 import GroupList from './GroupList';
+import { Row, Col, Grid } from "react-bootstrap";
 
 class Connect extends Component {
 
@@ -11,9 +12,17 @@ class Connect extends Component {
       <div className="Connect container">
         {!api.isLoggedIn() && <Link to="/signup">Signup</Link>}
         {!api.isLoggedIn() && <Link to="/login">Login</Link>}
-        <GroupCreate /><br /><br />
-        <h2>Your groups</h2>
-        <GroupList />
+        <Grid>
+          <Row>
+          <Col xs={12} md={8}>
+          <h2>Your groups</h2>
+          <GroupList />
+          </Col>
+          <Col xs={6} md={4}>
+          <GroupCreate />
+          </Col>
+        </Row>
+        </Grid>
       </div>
     );
   }

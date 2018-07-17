@@ -11,7 +11,7 @@ var router = express.Router();
 
 // to create a new group
 router.post("/newgroup", passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  console.log("members   ",req.body._members)
+
     let { name, place, info, _members } = req.body;
     const data = { name, place, info, _members };
     const listMembers = [..._members]
@@ -28,16 +28,13 @@ router.post("/newgroup", passport.authenticate("jwt", config.jwtSession), (req, 
         .then(group => {
           listMembers.forEach(e => {
             User.findByIdAndUpdate(e, {$push: {_groups: group._id}})
-            .then(() => console.log("hi"))
           })
                 res.json({
                   success: true,
                   group
                 });
         })
-        
         .catch(error => {
-          console.log("por fin")
           next(error)})
     }
     }
@@ -68,7 +65,6 @@ router.get("/:groupId", passport.authenticate("jwt", config.jwtSession), (req, r
   .populate('posts')
   .populate('_files')
   .then(group => {
-    console.log("group", group._id)
       res.json({
         success: true,
         group
