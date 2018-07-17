@@ -91,19 +91,13 @@ export default {
       .catch(errHandler);
   },
 
-  newFile(file, groupId) { //posting a new file
-    return service
-      .post(`${groupId}/file`, file)
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  addFile(file, groupId) { //getting a file from the form
+  addFile(data) { //getting a file from the form
     const formData = new FormData();
 
-    formData.append("file", file)
+    formData.append("file", data.file)
+
     return service
-      .post(`/${groupId}/file`, formData, {
+      .post(`/users/${data.groupId}/file`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
