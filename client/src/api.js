@@ -56,7 +56,6 @@ export default {
   },
 
   getGroup(groupId) { // to get all the happenings in a certain group
-    console.log(groupId)
     return service
     .get(`/connect/${groupId}`)
     .then(res => res.data)
@@ -72,23 +71,22 @@ export default {
 
   //////////////////////posts
   newPost(data) { //posting a new post
-    console.log("dataaaaa",data)
     return service
-      .post(`/posts/${data.groupId}/post`, data.text)
+      .post(`/posts/${data.groupId}/post`, data)
       .then(res => res.data)
       .catch(errHandler);
   },
 
   deletePost(postId) {  //to delete a post
     return service
-      .delete(`${postId}`)
+      .delete(`posts/${postId}`)
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  newReply(postId, reply) { //posting a new reply
+  newReply(data) { //posting a new reply
     return service
-      .post(`${postId}/post`, reply)
+      .post(`posts/${data.postId}/reply`, data)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -159,7 +157,6 @@ export default {
     if (!userData) return false;
     const user = JSON.parse(userData);
     if (user.token && user.name) {
-      console.log("loadUser for Authorization");
       
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
       return user;

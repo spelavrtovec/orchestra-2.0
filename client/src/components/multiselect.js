@@ -25,7 +25,6 @@ class MultiSelectField extends Component {
         }
       }
       )
-      console.log(res)
        this.setState({
         options : res
        })
@@ -33,11 +32,8 @@ class MultiSelectField extends Component {
   }
 
   handleSelectChange(value) {
-    console.log("You've selected 1111 ", value);
     this.setState({ value })
-    console.log("You've selected 22222", value);
-    this.props.onChange(value);
-    console.log("You've selected 3333", value); //getting the selected members
+    this.props.onChange(value);//getting the selected members
   } 
 
   render() {

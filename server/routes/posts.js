@@ -14,11 +14,11 @@ router.post(
   "/:groupId/post",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
-    let groupId = req.params.groupId;
+    let _group = req.params.groupId;
     let { text } = req.body;
     let _user = req.user._id;
     
-    const data = { text, _user, groupId };
+    const data = { text, _user, _group };
 
     if (req.body.text === "" ) {
       res.json({
@@ -26,23 +26,19 @@ router.post(
       });
     }
     else {
-    Post.create(data)
+    Post
+    .create(data)
       .then(post => {
-        Group.findByIdAndUpdate(
-          groupId,
+        Group
+        .findByIdAndUpdate(
+          _group,
           { $push: { posts: post } },{ new: true })
-          .then(() => {
-          console.log("ok")
-          // Group
-          // .save()
-          // .then(group => {
-          //   console.log("this is the post", post);
-          // });
-        });
-        return res.json({
-          success: true,
-          post
-        });
+          .then((post) => {
+            return res.json({
+              success: true,
+              post
+            });
+          })
       })
       .catch(error => next(error));
     }
@@ -56,7 +52,8 @@ router.delete(
   (req, res, next) => {
     let postId = req.params.postId;
 
-    Post.findByIdAndRemove(postId)
+    Post
+    .findByIdAndRemove(postId)
       .then(post => {
         res.json({
           success: true,
@@ -77,17 +74,23 @@ router.post(
     let _user = req.user._id;
 
     const data = { text, _user };
-    console.log(data);
 
-    Post.findByIdAndUpdate(postId, { $push: { replies: data } }, { new: true })
-      .then(post => {
-        return res.json({
-          success: true,
-          post
-        });
-      })
-
+    if (req.body.text === "" ) {
+      res.json({
+        success: false, 
+      });
+    }
+    else {
+    Post
+      .findByIdAndUpdate(postId, { $push: { replies: data } }, { new: true })
+        .then(post => {
+          return res.json({
+            success: true,
+            post
+          });
+        })
       .catch(error => next(error));
+    }
   }
 );
 

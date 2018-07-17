@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import api from '../api';
 import { FormControl, FormGroup } from "react-bootstrap";
 
-class AddPost extends Component {
+class AddReply extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: "",
-      groupId: "",
     };
   }
 
@@ -22,11 +21,11 @@ class AddPost extends Component {
     e.preventDefault()
     let data = {
       text: this.state.text,
-      groupId: this.props.groupId,
+      postId: this.props.postId,
     };
     api
-      .newPost(data)
-      .then(() => this.props.onAdd())
+      .newReply(data)
+      .then()
       .catch(err => {
         console.log("ERROR!!!!!!");
       });
@@ -34,12 +33,12 @@ class AddPost extends Component {
 
   render() {
     return (
-      <div className="Post container">
-        <form>
-          <FormGroup>
-            <FormControl type="text"  value={this.state.text || ''} onChange={(e) => {this.handleInputChange("text", e)}} placeholder="new post"/>
+      <div className="Reply container">
+        <form className="reply-box"  onSubmit={(e) => this.handleClick(e)}>
+          <FormGroup> 
+            <FormControl type="text"  value={this.state.text || ''} onChange={(e) => {this.handleInputChange("text", e)}} placeholder="new reply"/>
           </FormGroup>
-          <button className="no-button" type="submit" onClick={e => this.handleClick(e)}></button>
+          <button>Post a reply</button>
         </form>
         <div>{this.state.errorMessage}</div>
       </div>
@@ -47,4 +46,5 @@ class AddPost extends Component {
   }
 }
 
-export default AddPost;
+export default AddReply;
+
