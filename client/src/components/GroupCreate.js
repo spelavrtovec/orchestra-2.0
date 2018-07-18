@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../api';
-import MultiSelectField from './Multiselect';
+import MultiSelectField from "./Multiselect";
 import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 class GroupCreate extends Component {
