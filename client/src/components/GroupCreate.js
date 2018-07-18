@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 import MultiSelectField from './Multiselect';
-import { FormGroup, FormControl } from "react-bootstrap";
+import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 class GroupCreate extends Component {
   constructor(props) {
@@ -81,7 +81,7 @@ class GroupCreate extends Component {
             <FormControl type="text"  value={this.state.info} onChange={(e) => {this.handleInputChange("info", e)}} placeholder="like the repertoire or something" />
           </FormGroup>
        <br/>
-          <button onClick={(e) => this.handleClick(e)}>Create a new group</button>
+          <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Create a new group</Button>
         </form>
         <div>{ this.state.errorMessage }</div>
       </div>

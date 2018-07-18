@@ -24,7 +24,7 @@ export default {
 
   updateProfile(user) { //updating the profile
     return service
-      .put('/change', user)
+      .put('users/change', user)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -93,7 +93,7 @@ export default {
   addFile(data) {           //getting a file from the form
     const formData = new FormData();
 
-    formData.append("file", data.file)
+    formData.append("file", data.fileUrl)
 
     return service
       .post(`/posts/${data.groupId}/file`, formData, {
@@ -162,9 +162,9 @@ export default {
   },
 
   ////////////////////////////other
-  repertiore() {
+  repertoire() {
     return service
-      .get('/repertiore')
+      .get('/repertoire')
       .then(res => res.data)
       .catch(errHandler);
   },

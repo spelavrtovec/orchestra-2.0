@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from '../api';
+import { Button } from "react-bootstrap";
 
 class FileForm extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class FileForm extends Component {
     e.preventDefault()
     let data = {
       fileUrl: this.state.fileUrl,
+      groupId: this.props.groupId,
     }
     api.addFile(data)
   }
@@ -28,9 +30,8 @@ class FileForm extends Component {
       <div>
       <form>
           <input type="file" onChange={(e)=>this.handleChange(e)} /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Add a PDF</button>
+          <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Add a PDF</Button>
         </form>
-       
       </div>
     );
   }

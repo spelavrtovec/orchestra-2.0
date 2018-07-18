@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import api from '../api';
-import { FormControl, FormGroup } from "react-bootstrap";
+import { FormControl, FormGroup, Button } from "react-bootstrap";
 
 class AddReply extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class AddReply extends Component {
           <FormGroup> 
             <FormControl type="text"  value={this.state.text || ''} onChange={(e) => {this.handleInputChange("text", e)}} placeholder="new reply"/>
           </FormGroup>
-          <button>Post a reply</button>
+          <Button bsStyle="primary">Post a reply</Button>
         </form>
         <div>{this.state.errorMessage}</div>
       </div>

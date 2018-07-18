@@ -1,6 +1,7 @@
 import React from "react";
 import api from "../api";
-import { Image } from "react-bootstrap";
+import { Image, FormGroup, FormControl, Button } from "react-bootstrap";
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -26,13 +27,50 @@ class Profile extends React.Component {
     });
   }
 
+  handleInputChange(stateFieldName, event) {
+    let newState = {}
+    newState[stateFieldName] = event.target.value
+  
+    this.setState(newState)
+  }
+
+  handleClick(e) {
+    let user = {
+      name: this.state.name,
+      bio: this.state.bio,
+      myRole: this.state.myRole,
+    }
+
+    api.updateProfile(user)
+    .then(
+      
+    )
+}
+
   render() {
     return (
       <div className="container">
       <Image src={this.state.pictureUrl} circle className="pictureimg"/>
-          <h3>{this.state.name}</h3>
-          <p>bio: {this.state.bio}</p>
-          <p>role: {this.state.myRole}</p>
+
+          <form>
+          Name: 
+          <FormGroup>
+            <FormControl type="text"  value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} placeholder="your name" />
+          </FormGroup>
+       <br/>
+       Bio:
+       <FormGroup>
+            <FormControl type="text"  value={this.state.bio} onChange={(e) => {this.handleInputChange("bio", e)}} placeholder="" />
+          </FormGroup>
+       <br/>
+          Role:
+          <FormGroup >
+            <FormControl type="text"  value={this.state.myRole} onChange={(e) => {this.handleInputChange("myRole", e)}} placeholder="" />
+          </FormGroup>
+       <br/>
+       <br/>
+          <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Update your profile</Button>
+        </form>
       </div>
     );
   }

@@ -3,8 +3,9 @@ import AddPost from "./AddPost";
 import AddReply from "./AddReply";
 import Replies from "./Replies";
 import FileForm from "./FileForm";
+import { Link } from 'react-router-dom';
 import api from "../api";
-import { Well, Button } from "react-bootstrap";
+import { Well, Button, Row, Col, Grid } from "react-bootstrap";
 
 class Group extends Component {
   constructor(props) {
@@ -15,16 +16,15 @@ class Group extends Component {
   }
 
   componentDidMount() {
-    console.log("mountedd")
     this.updateGroupFromApi();
   }
 
   updateGroupFromApi() {
-    api.getGroup(this.props.match.params.groupId).then(group => {
+    api.getGroup(this.props.match.params.groupId)
+    .then(group => {
       this.setState({
         group: group
       });
-      console.log("wjbewbjefwvfewefk",this.state.group)
     });
   }
 
@@ -45,29 +45,43 @@ class Group extends Component {
       this.state.group && (
         <div className="group container">
           <h4>Group: {this.state.group.group.name}</h4>
-          <FileForm />
-          <AddPost
-            onAdd={this.updateGroupFromApi.bind(this)}
-            groupId={this.props.match.params.groupId}
-          />{" "}
-          <br />
-          {this.state.group.group.posts.map(e => (
-            <Well>
-              <Button
-                className="button-pushed"
-                bsSize="xsmall"
-                bsStyle="info"
-                onClick={this.deletePost.bind(this, e._id)}
-              >
-                delete this one
-              </Button>
-              <div key={e._id}>
-                {`${e._user.name}: ${e.text}`} <br /> <hr />
-                Replies: <Replies replies={e.replies} />
-                <AddReply postId={e._id} />
-              </div>
-            </Well>
-          ))}
+          <Grid>
+            <Row>
+              <Col xs={12} md={8}>
+                <AddPost
+                  onAdd={this.updateGroupFromApi.bind(this)}
+                  groupId={this.props.match.params.groupId}
+                />{" "}
+                <br />
+                {this.state.group.group.posts.map(e => (
+                  <Well>
+                    <Button
+                      className="button-pushed"
+                      bsSize="xsmall"
+                      bsStyle="danger"
+                      onClick={this.deletePost.bind(this, e._id)}
+                    >
+                      x
+                    </Button>
+                    <div key={e._id}>
+                      {`${e._user.name}: ${e.text}`} <br /> <hr />
+                      Replies: <Replies replies={e.replies} />
+                      <AddReply postId={e._id} />
+                    </div>
+                  </Well>
+                ))}
+              </Col>
+              <Col xs={6} md={4}>
+                <FileForm groupId={this.props.match.params.groupId} />
+                <br />
+                All the files:
+                <ul className="little-list">
+                {this.state.group.group._files.map(e => (
+                  <li><a href={e} target="_blank">{e}</a></li>))}
+                </ul>
+              </Col>
+            </Row>
+          </Grid>
         </div>
       )
     );

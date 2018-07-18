@@ -35,7 +35,7 @@ class AddPost extends Component {
   render() {
     return (
       <div className="Post container">
-        <form>
+        <form className="smaller-form">
           <FormGroup>
             <FormControl type="text"  value={this.state.text || ''} onChange={(e) => {this.handleInputChange("text", e)}} placeholder="new post"/>
           </FormGroup>

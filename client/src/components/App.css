@@ -130,9 +130,17 @@ section ul li h4 {
 }
 
 .button-pushed {
-  margin-left: 80%;
+  margin-left: 98%;
 }
 
 .reply-box {
   width: 50%;
+}
+
+.smaller-form {
+  width: 60%;
+}
+
+.little-list {
+  word-break: break-all;
 }
