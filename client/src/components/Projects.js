@@ -5,7 +5,7 @@ class Projects extends Component {
 
   render() {
     return (
-      <div className="Projects">
+      <div className="Projects container">
         <Link  to="/projects/amadeo-festival">amadeo festival</Link><br />
         <Link  to="/projects/orchestra">orchestra</Link><br />
         <Link  to="/projects/collaborators">collaborators</Link><br />

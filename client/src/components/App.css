@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,600');
 
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+}
+ 
 .App-logo {
   height: 50px;
   width: 50px;
@@ -18,6 +25,10 @@
 .Navigation {
   height: 8vh;
   margin-bottom: 0 !important;
+}
+
+.Contacts, .Gallery, .Projects, .Association, .Members, .Profile, .Connect, .Group {
+  margin-top: 10vh;
 }
 
 /* HOME */
@@ -97,7 +108,6 @@ section ul li h4 {
 .bigger {
   font-weight: bolder;
   display: flex;
-  margin: 0  0 0 10em;
 }
 
 .paragraph {
@@ -121,6 +131,11 @@ section ul li h4 {
 .pictureimg {
   width: 200px;
   height: 200px;
+}
+
+.form-Profile {
+  width: 50%;
+  margin: 0 auto;
 }
 
 /* GROUP */
@@ -147,3 +162,18 @@ section ul li h4 {
 }
 
 /* MEMEBERS */
+
+.cards-Members {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.cards-Members > div.caption {
+  display: flex;
+}
+
+.picture-Members {
+  align-self: baseline;
+  margin-right: 30px;
+}

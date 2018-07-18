@@ -7,9 +7,9 @@ import { Image } from "react-bootstrap";
 class Association extends Component {
   render() {
     return (
-      <div className="Association container">
-        <p className="bigger">A B O U T</p>
-        <div className="text-justify">
+      <div className="Association ">
+        <div className="text-justify container">
+        <p className="bigger">A B O U T</p><br />
           Chamber orchestra Amadeo was founded in Škofja Loka in 2013 and till
           present-day exists under artistic leadership and guidance of pianist
           and conductor Tilen Draksler. The main purpose of the orchestra is to
@@ -28,10 +28,10 @@ class Association extends Component {
           Philharmonic orchestra etc.
         </div>
         <br />
-        <Image src={j} responsive />
+        <Image src={j} responsive/>
         <br />
         <br />
-        <div className="ml-2 text-justify">
+        <div className="text-justify container">
           Chamber orchestra Amadeo held concerts in "Kristalni abonma",
           "Mednarodni cikel" and took part in festivals such as "Pisana Loka",
           "Loka v Snegu" (Škofja Loka), "Poletje v knežjem mestu", "Večeri v
@@ -46,17 +46,18 @@ class Association extends Component {
           Kravanja (actor) etc.
           <br /><br />
         </div>
-        <div>
+        <hr />
+        <div className="container">
           {!api.isLoggedIn() && (
             <Link className="littleLinks" to="/signup">
               sign up
             </Link>
-          )}
+          )} or 
           {!api.isLoggedIn() && (
             <Link className="littleLinks" to="/login">
-              log in
+              &nbsp;log in
             </Link>
-          )}
+          )} in the Connect platform.
         </div>
       </div>
     );

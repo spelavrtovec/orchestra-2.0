@@ -3,7 +3,6 @@ import AddPost from "./AddPost";
 import AddReply from "./AddReply";
 import Replies from "./Replies";
 import FileForm from "./FileForm";
-import { Link } from 'react-router-dom';
 import api from "../api";
 import { Well, Button, Row, Col, Grid } from "react-bootstrap";
 
@@ -43,7 +42,7 @@ class Group extends Component {
   render() {
     return (
       this.state.group && (
-        <div className="group container">
+        <div className="Group container">
           <h4>Group: {this.state.group.group.name}</h4>
           <Grid>
             <Row>
