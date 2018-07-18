@@ -107,6 +107,7 @@ export default {
 
   ////////////////////signup/login/logout 
   signup(userInfo) {  
+    console.log(userInfo)
     const formData = new FormData();
     formData.append("name", userInfo.name)
     formData.append("password", userInfo.password)
