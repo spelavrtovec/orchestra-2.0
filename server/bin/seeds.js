@@ -22,7 +22,7 @@ const users = [
     pictureUrl: "http://res.cloudinary.com/dvsfkhs3x/image/upload/v1531145239/my-images/qy3u4klpzkpqoigxboiw.jpg",
     bio: "Nigel Kennedy (born 28 December 1956) is an English violinist and violist. He made his early career in the classical field, and has more recently performed in jazz, klezmer and other music genres.",
     myRole: "violinist",
-    email: "nono",
+    email: "nonono",
     value: "Nigel Kennedy",
     // _groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
     isPublic: true,
