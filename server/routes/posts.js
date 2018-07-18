@@ -99,9 +99,9 @@ router.post(
   "/:groupId/file",
   [uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession)],
   (req, res, next) => {
+
     let groupId = req.params.groupId;
     let fileUrl = req.file.url;
-
     Group
     .findByIdAndUpdate(
       groupId,

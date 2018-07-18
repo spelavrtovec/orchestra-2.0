@@ -51,26 +51,25 @@ class Profile extends React.Component {
     return (
       <div className="container">
       <Image src={this.state.pictureUrl} circle className="pictureimg"/>
-
           <form>
           Name: 
           <FormGroup>
             <FormControl type="text"  value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} placeholder="your name" />
           </FormGroup>
-       <br/>
-       Bio:
-       <FormGroup>
-            <FormControl type="text"  value={this.state.bio} onChange={(e) => {this.handleInputChange("bio", e)}} placeholder="" />
-          </FormGroup>
-       <br/>
-          Role:
-          <FormGroup >
-            <FormControl type="text"  value={this.state.myRole} onChange={(e) => {this.handleInputChange("myRole", e)}} placeholder="" />
-          </FormGroup>
-       <br/>
-       <br/>
-          <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Update your profile</Button>
-        </form>
+          <br/>
+          Bio:
+          <FormGroup>
+                <FormControl type="text"  value={this.state.bio} onChange={(e) => {this.handleInputChange("bio", e)}} placeholder="" />
+              </FormGroup>
+          <br/>
+              Role:
+              <FormGroup >
+                <FormControl type="text"  value={this.state.myRole} onChange={(e) => {this.handleInputChange("myRole", e)}} placeholder="" />
+              </FormGroup>
+          <br/>
+          <br/>
+              <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Update your profile</Button>
+            </form>
       </div>
     );
   }

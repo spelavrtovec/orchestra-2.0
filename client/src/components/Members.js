@@ -6,33 +6,30 @@ class Members extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: []
-    };
+      members: null
+    }
   }
 
   componentDidMount() {
-    api
-      .getMembers()
-      .then(result => {
-        result.json();
-      })
-      .then(users => {
-        let names = users.map(users => {
-          return <h3 key={users._id}> {users.name}
-          </h3>;
-        });
-        this.setState({ names: names });
+    api.getMembers()
+    .then(members => {
+      this.setState({
+       members: members
       });
+    });
   }
 
   render() {
     return (
+      this.state.members &&
       <div className="Members">
+      {this.state.members.map(e => 
         <Thumbnail>
-          <Image src="/thumbnail.png" circle />
-          {this.state.names}
-          <p> {this.state.names}</p>
+          <Image src={e.pictureUrl} circle className="pictureimg"/>
+          <p> {e.name}: {e.bio}</p>
         </Thumbnail>
+      )}
+
       </div>
     );
   }

@@ -14,7 +14,7 @@ export default {
   
   //////////////////users
   getProfile() { //getting the profile
-        return service
+    return service
       .get('/users/profile')
       .then(res => {
         return res.data

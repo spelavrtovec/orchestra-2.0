@@ -34,13 +34,17 @@ router.post(
       .create(data)
         .then(group => {
           listMembers.forEach(e => {
-            User.findByIdAndUpdate(e, { $push: { _groups: group._id } });
-          });
-          res.json({
-            success: true,
-            group
-          });
-        })
+            User
+            .findByIdAndUpdate(e, { $push: { _groups: group._id }}, {new: true} )
+            .then((updatedUser => {
+              console.log(updatedUser);
+              res.json({
+                success: true,
+                group
+              });
+            }))
+          })
+          })
         .catch(error => {
           next(error);
         });
@@ -54,7 +58,7 @@ router.get(
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
     let user = req.user._id;
-    console.log("in hereeeee");
+
     User.findById(user)
       .populate("_groups")
       .then(user => {

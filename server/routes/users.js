@@ -8,8 +8,9 @@ const uploadCloud = require("../configs/cloudinary");
 
 // to get all members with isPublic: true
 router.get('/members', (req, res, next) => {
+
   User
-  .find('isPublic: true')
+  .find({isPublic:true}) 
   .select({
     'name': 1,
     'pictureUrl': 1,
@@ -26,6 +27,7 @@ router.get('/members', (req, res, next) => {
 
 // to get all members
 router.get('/connect', (req, res, next) => {
+
   User
   .find()
   .select({
@@ -43,13 +45,12 @@ router.get('/connect', (req, res, next) => {
 });
 
 // getting the profile of the current user
-router.get("/profile",passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-  console.log("PROFILE ROUTE:")
+router.get("/profile", passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
   let profile = req.user._id;
+
   User
     .findById(profile)
     .then(user => {
-      console.log("USER:", user)
       res.json(
         user
       )
@@ -58,13 +59,19 @@ router.get("/profile",passport.authenticate("jwt", config.jwtSession),(req, res,
 
 //for changing the profile info
 router.put('/change', 
-[ uploadCloud.single("file"), passport.authenticate("jwt", config.jwtSession) ],
+[ uploadCloud.single("file"),
+ passport.authenticate("jwt", config.jwtSession) ],
 (req, res, next) => {
   let profile = req.user._id;
   const { email, name, password, bio, myRole } = req.body;
-  const pictureUrl = req.file.url;
 
-  let user = { email, name, password, bio, myRole, pictureUrl }
+  if (req.file) {
+    const pictureUrl = req.file.url;
+    var user = { email, name, password, bio, myRole, pictureUrl }
+  }
+  else{
+    var user = { email, name, password, bio, myRole }
+  }
   
   User
   .findByIdAndUpdate(profile, user, { new: true })
