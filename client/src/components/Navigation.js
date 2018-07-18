@@ -11,14 +11,14 @@ class Navigation extends Component {
 
   render() {
     return (
-      <div className="Navigation">
-        <Navbar inverse collapseOnSelect>
+      <div>
+        <Navbar inverse collapseOnSelect className="Navigation">
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav>
-              <NavItem href="/">
+              {/* <NavItem href="/">
                 <img src={logo} className="App-logo" alt="logo" />
-              </NavItem>
+              </NavItem> */}
               <NavItem eventKey={1} href="/">
                 home
               </NavItem>
