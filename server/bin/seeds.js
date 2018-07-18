@@ -33,7 +33,7 @@ const users = [
     pictureUrl: "http://res.cloudinary.com/dvsfkhs3x/image/upload/v1531145239/my-images/qy3u4klpzkpqoigxboiw.jpg",
     bio: "André Léon Marie Nicolas Rieu (born 1 October 1949) is a Dutch violinist and conductor best known for creating the waltz-playing Johann Strauss Orchestra.",
     myRole: "violinist",
-    email: "nono",
+    email: "nonon",
     value: "André Rieu",
     // _groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
     isPublic: true,

@@ -16,9 +16,9 @@ class Navigation extends Component {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav>
-              {/* <NavItem href="/">
+              <NavItem href="/">
                 <img src={logo} className="App-logo" alt="logo" />
-              </NavItem> */}
+              </NavItem>
               <NavItem eventKey={1} href="/">
                 home
               </NavItem>
