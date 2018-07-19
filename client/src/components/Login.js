@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
+import { Link } from 'react-router-dom';
+import { Button } from "react-bootstrap";
 
 class Login extends Component {
   constructor(props) {
@@ -32,11 +34,12 @@ class Login extends Component {
   render() {   
     return (
       <div className="Login">
-        <h2>Login</h2>
         <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Login</button>
+          Email: <br/> <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/><br/> 
+          Password: <br/> <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/> <br/>
+          <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Log in</Button><br />
+          <hr/>
+        Don't have a profile yet? Then sign up <Link to="/signup">here</Link>.
         </form>
       </div>
     );

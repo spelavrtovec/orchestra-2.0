@@ -37,7 +37,7 @@ class Gallery extends Component {
             frameBorder="0" 
             allow="autoplay; encrypted-media" 
             allowFullScreen 
-            title="orchestra amadeo" />
+            title="orchestra amadeo2" />
           </ResponsiveEmbed>
         </div>
     </Col>
@@ -62,7 +62,7 @@ class Gallery extends Component {
             frameBorder="0" 
             allow="autoplay; encrypted-media" 
             allowFullScreen 
-            title="orchestra amadeo" />
+            title="orchestra amadeo3" />
           </ResponsiveEmbed>
         </div>
     </Col>
@@ -73,14 +73,14 @@ class Gallery extends Component {
     <Col md={6} mdPush={6}>
     <div style={{ width: 550, height: 'auto' }} >
           <ResponsiveEmbed a16by9>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/ThBksh3n7ps?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+          <iframe width="560" height="315" title="orchestra amadeo4" src="https://www.youtube.com/embed/ThBksh3n7ps?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
           </ResponsiveEmbed>
         </div>
     </Col>
     <Col md={6} mdPull={6}>
     <div style={{ width: 550, height: 'auto' }} >
           <ResponsiveEmbed a16by9>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/ag_oQnMBlgU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen/>
+          <iframe width="560" height="315" title="orchestra amadeo5" src="https://www.youtube.com/embed/ag_oQnMBlgU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen/>
           </ResponsiveEmbed>
         </div>
     </Col>

@@ -19,6 +19,7 @@ body {
   align-items: center;
   height: 100vh;
   font-size: 8vh;
+  top: 7vh;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -32,7 +33,7 @@ body {
     border-radius: 0 !important;  
 }
 
-.Contacts, .Gallery, .Projects, .Association, .Members, .Profile, .Connect, .Group {
+.Contacts, .Gallery, .Projects, .Association, .Members, .Profile, .Connect, .Group , .Signup, .Login {
   margin-top: 10vh;
 }
 
@@ -181,6 +182,7 @@ section ul li h4 {
 .picture-Members {
   align-self: baseline;
   margin-right: 30px;
+  width: 37%;
 }
 
 /* CONTACTS */
@@ -237,4 +239,24 @@ section ul li h4 {
 .social-icons {
   display: flex;
   justify-content: space-evenly;
+}
+
+/* SIGNUP */
+
+.Signup form {
+  margin: 0 auto;
+  width: 300px;
+  text-align: center;
+}
+
+.profile-picture {
+  margin: 0;
+}
+
+/* LOGIN */
+
+.Login form {
+  margin: 0 auto;
+  width: 300px;
+  text-align: center;
 }

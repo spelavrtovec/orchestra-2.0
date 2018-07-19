@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
+import { Link } from 'react-router-dom';
+import { Button } from "react-bootstrap";
 
 class Signup extends Component {
   constructor(props) {
@@ -60,15 +62,19 @@ class Signup extends Component {
   render() {   
     return (
       <div className="Signup">
-        <h2>Signup</h2>
         <form>
-          Email: <input  type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Name: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          Profile picture: <input type="file" onChange={(e)=>this.handleChange(e)} /> <br/>
-          Bio:  <input type="text" value={this.state.bio} onChange={(e) => {this.handleInputChange("bio", e)}} /> <br/>
-          Your role:  <input type="text" value={this.state.myRole} onChange={(e) => {this.handleInputChange("myRole", e)}} /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Signup</button>
+        <h2>Sign up and connect</h2><br/> 
+          <div>
+          Email:<br/> <input  type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/><br/> 
+          Name: <br/><input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/><br/> 
+          Password: <br/><input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/><br/> 
+          Profile picture: <input className="profile-picture" type="file" onChange={(e)=>this.handleChange(e)} /> <br/><br/> 
+          Bio: <br/> <input type="text" value={this.state.bio} onChange={(e) => {this.handleInputChange("bio", e)}} /> <br/><br/> 
+          Your role: <br/> <input type="text" value={this.state.myRole} onChange={(e) => {this.handleInputChange("myRole", e)}} /> <br/><br/> 
+          <Button bsStyle="primary" onClick={(e) => this.handleClick(e)}>Signup</Button><br />
+          <hr/>
+        Already have a profile? Then log in <Link to="/login">here</Link>.
+          </div>
         </form>
         <div>{ this.state.errorMessage }</div>
       </div>
@@ -77,52 +83,3 @@ class Signup extends Component {
 }
 
 export default Signup;
-
-
-// //
-// class FormExample extends React.Component {
-//   constructor(props, context) {
-//     super(props, context);
-
-//     this.handleChange = this.handleChange.bind(this);
-
-//     this.state = {
-//       value: ''
-//     };
-//   }
-
-//   getValidationState() {
-//     const length = this.state.value.length;
-//     if (length > 10) return 'success';
-//     else if (length > 5) return 'warning';
-//     else if (length > 0) return 'error';
-//     return null;
-//   }
-
-//   handleChange(e) {
-//     this.setState({ value: e.target.value });
-//   }
-
-//   render() {
-//     return (
-//       <form>
-//         <FormGroup
-//           controlId="formBasicText"
-//           validationState={this.getValidationState()}
-//         >
-//           <ControlLabel>Working example with validation</ControlLabel>
-//           <FormControl
-//             type="text"
-//             value={this.state.value}
-//             placeholder="Enter text"
-//             onChange={this.handleChange}
-//           />
-//           <FormControl.Feedback />
-//           <HelpBlock>Validation is based on string length.</HelpBlock>
-//         </FormGroup>
-//       </form>
-//     );
-//   }
-// }
-
-// render(<FormExample />);

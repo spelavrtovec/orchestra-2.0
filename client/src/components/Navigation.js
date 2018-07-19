@@ -23,7 +23,7 @@ class Navigation extends Component {
                 home
               </NavItem>
               <NavItem eventKey={2} href="/contacts">
-                contacts
+                contact
               </NavItem>
               <NavItem eventKey={2} href="/gallery">
                 gallery

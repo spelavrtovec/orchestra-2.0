@@ -52,11 +52,11 @@ class Association extends Component {
             <Link className="littleLinks" to="/signup">
               sign up
             </Link>
-          )} or 
+             )} or
           {!api.isLoggedIn() && (
             <Link className="littleLinks" to="/login">
               &nbsp;log in
-            </Link>
+            </Link> 
           )} in the Connect platform.
         </div>
       </div>

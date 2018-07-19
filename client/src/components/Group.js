@@ -44,6 +44,7 @@ class Group extends Component {
       this.state.group && (
         <div className="Group container">
           <h4>Group: {this.state.group.group.name}</h4>
+          <p>{this.state.group.group.info}</p><hr />
           <Grid>
             <Row>
               <Col xs={12} md={8}>
