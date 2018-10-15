@@ -26,7 +26,6 @@ class App extends Component {
   render() {             
     return  (
       <div>
-        <Navigation />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/signup" component={Signup} />
@@ -43,6 +42,7 @@ class App extends Component {
           <Route path={`/posts/:groupId/post`} component={Group} /> 
           <Route render={() => <h2>404</h2>} />
         </Switch> 
+        <Navigation />
       </div>
     );
   }

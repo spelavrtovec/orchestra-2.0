@@ -75,7 +75,7 @@ router.get(
   "/:groupId",
   passport.authenticate("jwt", config.jwtSession),
   (req, res, next) => {
-    //get the component of the specific group
+
     let groupId = req.params.groupId;
     console.log("groupId", groupId)
     Group
@@ -89,6 +89,7 @@ router.get(
           model: "User",
         }
       })
+
       .populate({
         path: "posts",
         populate: {

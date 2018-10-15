@@ -1,59 +1,95 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,600');
 
+html {
+  font-size: 67%;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  font-size: 1em;
-}
- 
-.App-logo {
-  height: 50px;
-  width: 50px;
 }
 
-#top-header {
-  color: #ffffff;
+/* NAVIGATION */
+
+.dd-wrapper-absolute {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.dd-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 8vh;
-  top: 7vh;
-  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 20px 20px 0 0;
 }
 
-.Navigation {
-  height: 8vh;
-  margin-bottom: 0 !important;
+.dd-header {
+  margin-bottom: 10px;
 }
 
-
-.navbar {
-    border-radius: 0 !important;  
+.dd-list {
+  list-style: none;
+  text-align: right;
+  height: 100px;
+  overflow: hidden;
+  z-index: -1;
 }
 
-.Contacts, .Gallery, .Projects, .Association, .Members, .Profile, .Connect, .Group , .Signup, .Login {
-  margin-top: 10vh;
+.slide-enter {
+  transform: translateY(-100%);
+  transition: .3s cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-active {
+  transform: translateY(0%);
+}
+
+.slide-leave {
+  transform: translateY(0%);
+  transition: .3s ease-in-out;
+}
+
+.slide-leave-active {
+  transform: translateY(-100%);
 }
 
 /* HOME */
 
-.Home {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  background-image: url(../images/d.jpg);
-  background-repeat: no-repeat;
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 8vh;
-  width: 100%;
-  height: 92vh;
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  background-blend-mode: overlay;
+.home-flex-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8vh;
+  margin-right: 10vw;
+  height: 70vh;
+  max-width: 1000px;
+}
+
+.home-hero {
+  letter-spacing: 7px;
+  font-size: 5rem;
+  margin: 0 0 0 10px;
+}
+
+.home-image {
+  left: -3%;
+}
+
+@media screen and (max-width: 600px) {
+  .home-flex-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30vh;
+    margin-right: 10vw;
+    height: 70vh;
+    max-width: 1000px;
+  }
+
+  .home-hero {
+    letter-spacing: 7px;
+    font-size: 3rem;
+    margin-left: 20px;
+  }
 }
 
 /* REPERTOIRE */
