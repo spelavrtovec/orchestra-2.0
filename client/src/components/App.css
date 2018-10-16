@@ -92,6 +92,20 @@ body {
   }
 }
 
+/* CONTACTS */
+
+#logo1 {
+  width: 170px;
+  height: 70px;
+  padding-top: 60px;
+  margin-left: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* REPERTOIRE */
 div.Nice{
   display: flex;
@@ -219,62 +233,6 @@ section ul li h4 {
   align-self: baseline;
   margin-right: 30px;
   width: 37%;
-}
-
-/* CONTACTS */
-
-.Contacts {
-  display: flex;
-  justify-content: center;
-}
-
-.second-Contacts {
-  margin-left: 10em;
-}
-
-.image-Contacts-one {
-  height: 88vh;
-}
-
-.line1 {
-  font-size: 2em;
-  font-weight: bolder;
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-#logo1 {
-  width: 170px;
-  height: 70px;
-  padding-top: 60px;
-  margin-left: 20px;
-}
-
-.line2 {
-  font-style: italic;
-  font-weight: bold;
-  border: 0;
-}
-
-.line3 {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-}
-
-.line4, .line5 {
-  padding-top: 10px;
-  margin-left: 20px;
-}
-
-.one {
-  font-weight: bolder;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: space-evenly;
 }
 
 /* SIGNUP */
