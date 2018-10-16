@@ -3,14 +3,16 @@ import d from "../images/d.jpg";
 import { Image } from "react-bootstrap";
 import { Parallax, ParallaxLayer } from "react-spring";
 import Contacts from './Contacts';
-import Navigation from './Navigation';
+import Gallery from './Gallery';
+import Association from './Association';
+import Projects from './Projects';
 
 class Home extends Component {
   render() {
     return (
       <div className="Home">
         <Parallax
-          pages={4}
+          pages={5}
           scrolling={true}
           vertical
           ref={ref => (this.parallax = ref)}>
@@ -27,15 +29,15 @@ class Home extends Component {
           </ParallaxLayer>
 
           <ParallaxLayer offset={2} speed={0.5}>
-           llalalal
+           <Gallery></Gallery>
           </ParallaxLayer>
 
            <ParallaxLayer offset={3} speed={0.5}>
-           llalalal
+           <Association></Association>
           </ParallaxLayer>
 
            <ParallaxLayer offset={4} speed={0.5}>
-           llalalal
+           <Projects></Projects>
           </ParallaxLayer>
         </Parallax>
       </div>
